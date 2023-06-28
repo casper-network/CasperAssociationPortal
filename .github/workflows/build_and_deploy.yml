@@ -1,0 +1,54 @@
+---
+name: Build and Deploy Staging
+
+on:
+    workflow_call:
+        inputs:
+            environment:
+                description: "The environment to deploy to"
+                required: true
+                type: string
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-22.04
+        environment:
+            name: ${{ inputs.environment }}
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Use Node.js 18.x for build
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.14.0
+
+            - run: yarn install
+
+            - run: yarn build
+              env:
+                VITE_FRONTEND_URL: ${{ env.VITE_FRONTEND_URL }}
+                VITE_API_URL: ${{ env.VITE_API_URL }}
+                VITE_HELLOSIGN_CLIENT_ID: ${{ secrets.HELLOSIGN_CLIENT_ID }}
+
+            - run: | 
+                  if [ "${{ inputs.environment }}" = "staging" ]; then
+                      cp robots.txt dist/robots.txt
+                      chmod 444 dist/robots.txt
+                  fi
+
+            # TODO: use GitHub's OIDC provider in conjunction with a configured AWS IAM Identity Provider endpoint instead
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ env.AWS_S3_REGION }}
+
+            - name: Deploy to S3
+              uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
+              with:
+                  args: --acl public-read --follow-symlinks --delete
+              env:
+                  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+                  AWS_S3_REGION: ${{ env.AWS_S3_REGION }}
+                  SOURCE_DIR: dist

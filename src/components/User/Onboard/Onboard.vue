@@ -14,6 +14,7 @@ import UserDropDownMenu from '../../User/DropDownMenu.vue';
 import HelloSign from 'hellosign-embedded';
 
 import 'vue-neat-modal/dist/vue-neat-modal.css';
+import 'dropzone-vue/dist/dropzone-vue.common.css';
 
 export default {
 	components: {
@@ -702,7 +703,7 @@ export default {
 											3.
 										</td>
 										<td>
-											Upload the signed file for the system to check
+											Upload the signed file for the system to check. Must be plain text file only. *.rtf will not be accepted.
 										</td>
 										<td>
 											<DropZone 
@@ -728,7 +729,7 @@ export default {
 											3.
 										</td>
 										<td>
-											Upload the signed file for the system to check
+											Upload the signed file for the system to check. Must be plain text file only. *.rtf will not be accepted.
 										</td>
 										<td>
 											<DropZone 

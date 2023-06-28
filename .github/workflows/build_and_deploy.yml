@@ -14,6 +14,10 @@ jobs:
         runs-on: ubuntu-22.04
         environment:
             name: ${{ inputs.environment }}
+        env:
+            VITE_FRONTEND_URL: ${{ env.VITE_FRONTEND_URL }}
+            VITE_API_URL: ${{ env.VITE_API_URL }}
+            VITE_HELLOSIGN_CLIENT_ID: ${{ secrets.VITE_HELLOSIGN_CLIENT_ID }}
         steps:
             - uses: actions/checkout@v3
 
@@ -25,10 +29,6 @@ jobs:
             - run: yarn install
 
             - run: yarn build
-              env:
-                VITE_FRONTEND_URL: ${{ env.VITE_FRONTEND_URL }}
-                VITE_API_URL: ${{ env.VITE_API_URL }}
-                VITE_HELLOSIGN_CLIENT_ID: ${{ secrets.HELLOSIGN_CLIENT_ID }}
 
             - run: | 
                   if [ "${{ inputs.environment }}" = "staging" ]; then

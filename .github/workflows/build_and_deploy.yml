@@ -45,10 +45,8 @@ jobs:
                   aws-region: ${{ vars.AWS_S3_REGION }}
 
             - name: Deploy to S3
-              uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
+              uses: reggionick/s3-deploy@04c48f45adfd7a34c66348cf9cd1b6cd117cc467
               with:
-                  args: --acl public-read --follow-symlinks --delete
-              env:
-                  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-                  AWS_S3_REGION: ${{ env.AWS_S3_REGION }}
-                  SOURCE_DIR: dist
+                  folder: dist
+                  bucket: ${{ secrets.AWS_S3_BUCKET }}
+                  bucket-region: ${{ vars.AWS_S3_REGION }}

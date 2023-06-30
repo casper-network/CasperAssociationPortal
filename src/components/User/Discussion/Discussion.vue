@@ -73,6 +73,28 @@ export default {
 	},
 
 	methods: {
+		pageLockRedirect(resp) {
+			if (resp.status == 403) {
+				if (resp.message == 'kyc-lock') {
+					this.$root.routeTo('/u/membership');
+					this.$root.toast(
+						'Page Locked',
+						'Discussion pages are locked at this time because your KYC is not approved',
+						'warning'
+					);
+				}
+
+				if (resp.message == 'prob-lock') {
+					this.$root.routeTo('/u/membership');
+					this.$root.toast(
+						'Page Locked',
+						'Discussion pages are locked at this time due to probation of one of your nodes',
+						'warning'
+					);
+				}
+			}
+		},
+
 		async getDiscussion() {
 			let fetch_bearer_token = this.$cookies.get('bearer_token');
 
@@ -91,6 +113,8 @@ export default {
 				this.discussion = response.detail;
 				// console.log(this.discussion);
 			}
+
+			this.pageLockRedirect(response);
 		},
 
 		gotoProfile(pseudonym) {

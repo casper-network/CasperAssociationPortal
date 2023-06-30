@@ -62,7 +62,9 @@ export default {
 
 			upgrade_modal:      false,
 			delete_modal:       false,
-			past_upgrade_modal: false
+			past_upgrade_modal: false,
+
+			is_ticking:         false
 		}
 	},
 
@@ -335,9 +337,14 @@ export default {
 
 		startCountdown() {
 			let that = this;
-			setInterval(function() {
-				that.countdownTick();
-			}, 1000);
+
+			if (!that.is_ticking) {
+				that.is_ticking = true;
+
+				setInterval(function() {
+					that.countdownTick();
+				}, 1000);
+			}
 		},
 
 		countdownTick() {

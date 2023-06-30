@@ -537,7 +537,7 @@ export default {
 						</div>
 
 						<input id="letter-received" type="checkbox" class="form-check-input pointer mt5" v-model="enabled_letter_received">
-						<label for="letter-received" class="ml5 pointer fs14 op8">Your letter of motivation is received</label>
+						<label for="letter-received" class="ml5 pointer fs14 op8">Your letter of motivation is received. Member has completed all onboarding steps.</label>
 						<textarea :disabled="loading.email_letter_received" v-model="email_letter_received" class="form-control height-200 p15 mt10">{{ email_letter_received }}</textarea>
 						<div class="form-group mt10 mb40">
 							<button class="btn btn-success" @click="saveEmailContent('email_letter_received', email_letter_received)">

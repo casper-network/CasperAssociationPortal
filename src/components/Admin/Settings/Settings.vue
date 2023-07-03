@@ -171,27 +171,27 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response);
-				this.uptime_calc_size   = response.detail.uptime_calc_size;
-				this.uptime_warning     = response.detail.uptime_warning;
-				this.uptime_probation   = response.detail.uptime_probation;
-				this.minimum_eras       = response.detail.minimum_eras;
-				this.eras_since_redmark = response.detail.eras_since_redmark;
-				this.redmark_revoke     = response.detail.redmark_revoke;
-				this.redmark_calc_size  = response.detail.redmark_calc_size;
+				this.uptime_calc_size   = response.detail?.uptime_calc_size;
+				this.uptime_warning     = response.detail?.uptime_warning;
+				this.uptime_probation   = response.detail?.uptime_probation;
+				this.minimum_eras       = response.detail?.minimum_eras;
+				this.eras_since_redmark = response.detail?.eras_since_redmark;
+				this.redmark_revoke     = response.detail?.redmark_revoke;
+				this.redmark_calc_size  = response.detail?.redmark_calc_size;
 
-				this.uptime_correction_units  = response.detail.uptime_correction_units;
-				this.uptime_correction_metric = response.detail.uptime_correction_metric;
+				this.uptime_correction_units  = response.detail?.uptime_correction_units;
+				this.uptime_correction_metric = response.detail?.uptime_correction_metric;
 
-				this.kyc_lock_nodes  = Boolean(response.detail.kyc_lock_nodes);
-				this.kyc_lock_discs  = Boolean(response.detail.kyc_lock_discs);
-				this.kyc_lock_votes  = Boolean(response.detail.kyc_lock_votes);
-				this.kyc_lock_perks  = Boolean(response.detail.kyc_lock_perks);
-				this.prob_lock_nodes = Boolean(response.detail.prob_lock_nodes);
-				this.prob_lock_discs = Boolean(response.detail.prob_lock_discs);
-				this.prob_lock_votes = Boolean(response.detail.prob_lock_votes);
-				this.prob_lock_perks = Boolean(response.detail.prob_lock_perks);
+				this.kyc_lock_nodes  = Boolean(response.detail?.kyc_lock_nodes);
+				this.kyc_lock_discs  = Boolean(response.detail?.kyc_lock_discs);
+				this.kyc_lock_votes  = Boolean(response.detail?.kyc_lock_votes);
+				this.kyc_lock_perks  = Boolean(response.detail?.kyc_lock_perks);
+				this.prob_lock_nodes = Boolean(response.detail?.prob_lock_nodes);
+				this.prob_lock_discs = Boolean(response.detail?.prob_lock_discs);
+				this.prob_lock_votes = Boolean(response.detail?.prob_lock_votes);
+				this.prob_lock_perks = Boolean(response.detail?.prob_lock_perks);
 
-				this.esign_doc       = response.detail.esign_doc;
+				this.esign_doc       = response.detail?.esign_doc;
 
 				let that = this;
 				setTimeout(function() {

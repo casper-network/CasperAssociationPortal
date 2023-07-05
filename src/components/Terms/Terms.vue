@@ -42,10 +42,10 @@ export default {
 
 			if (response.status == 200) {
 				let that        = this;
-				this.pdf_name   = response.detail.name;
-				this.pdf_ext    = response.detail.ext;
-				this.pdf_source = `${this.$root.api_url}/documents/terms-of-service.${this.pdf_ext}?v=${Math.random().toString().split('.')[1]}`;
-				// this.pdf_source = response.detail.url;
+				this.pdf_name   = response.detail?.name;
+				this.pdf_ext    = response.detail?.ext;
+				// this.pdf_source = `${this.$root.api_url}/documents/terms-of-service.${this.pdf_ext}?v=${Math.random().toString().split('.')[1]}`;
+				this.pdf_source = response.detail?.url;
 
 				if (this.pdf_ext == 'txt') {
 					fetch(this.pdf_source).then(function(resp) {

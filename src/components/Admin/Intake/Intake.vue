@@ -33,9 +33,9 @@ export default {
 			removeModalOpen: false,
 			selected_guid: null,
 
-			demo_users: [], //// dev, rm
-			demo_users_gridApi: null, //// dev, rm
-			demo_users_column_defs: [ //// dev, rm
+			demo_users: [], // dev
+			demo_users_gridApi: null, // dev
+			demo_users_column_defs: [ // dev
 				{
 					field: 'email',
 					headerName: 'Email',
@@ -266,12 +266,11 @@ export default {
 	created() {
 		this.getIntake();
 
-		//// dev: rm
-		let that = this;
-		this.getDemoUsers();
-		setInterval(function() {
-			that.getDemoUsers();
-		},10000);
+		// let that = this;
+		// this.getDemoUsers();
+		// setInterval(function() {
+		// 	that.getDemoUsers();
+		// },10000);
 	},
 
 	mounted() {
@@ -279,7 +278,7 @@ export default {
 	},
 
 	methods: {
-		async getDemoUsers() { //// dev, rm
+		async getDemoUsers() {
 			const response = await api(
 				'GET',
 				'admin/get-demo-users',
@@ -295,7 +294,7 @@ export default {
 			}
 		},
 
-		async verifyDemoUser(guid) { //// dev, rm
+		async verifyDemoUser(guid) {
 			const response = await api(
 				'POST',
 				'admin/verify-demo-user',
@@ -324,7 +323,7 @@ export default {
 			}
 		},
 
-		demo_users_onGridReady(params) { //// dev: rm
+		demo_users_onGridReady(params) {
 			this.demo_users_gridApi = params.api;
 		},
 
@@ -531,6 +530,7 @@ export default {
 
 <template>
 	<div class="container-fluid">
+		<!--
 		<div class="row">
 			<div class="col-12 mt20">
 				<div class="card">
@@ -557,6 +557,7 @@ export default {
 				</div>
 			</div>
 		</div>
+		-->
 
 		<div class="row">
 			<div class="col-12 mt20">

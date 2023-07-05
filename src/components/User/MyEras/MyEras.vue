@@ -112,20 +112,45 @@ export default {
 				<div class="card min-card-height">
 					<div class="card-title">
 						Public Key
-						<Popper hover arrow placement="right" class="fs11" content="Displays the selected node address">
+						<Popper 
+							hover 
+							arrow 
+							placement="right" 
+							class="fs11" 
+							content="Displays the selected node address"
+						>
 							<i class="fa fa-info-circle pointer ml5 fs16"></i>
 						</Popper>
 
-						<i class="fa fa-clipboard float-right fs16 pointer" @click="copyValidatorId"></i>
+						<i 
+							class="fa fa-clipboard float-right fs16 pointer" 
+							@click="copyValidatorId"
+						></i>
 					</div>
 					<div class="card-body">
 						<div v-if="this.selected_validator === null">
-							<ClipLoader size="25px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								size="25px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
 						<div v-else>
-							<select class="form-select" ref="selected_validator" v-model="selected_validator">
-								<option value="add-new-node">Add a new node</option>
-								<option v-for="(value, index) in public_keys" :value="value" :selected="index == 0">{{ value }}</option>
+							<select 
+								class="form-select" 
+								ref="selected_validator" 
+								v-model="selected_validator"
+							>
+								<option value="add-new-node">
+									Add a new node
+								</option>
+
+								<option 
+									v-for="(value, index) in public_keys" 
+									:value="value" 
+									:selected="index == 0"
+								>
+									{{ value }}
+								</option>
 							</select>
 						</div>
 					</div>
@@ -138,7 +163,10 @@ export default {
 					</div>
 					<div class="card-body">
 						<div v-if="this.uptime === null">
-							<ClipLoader size="15px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								size="15px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
 						<div v-else class="text-center">
 							{{ this.uptime }}%
@@ -153,9 +181,15 @@ export default {
 					</div>
 					<div class="card-body">
 						<div v-if="this.total_eras === null">
-							<ClipLoader size="15px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								size="15px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
-						<div v-else class="text-center">
+						<div 
+							v-else 
+							class="text-center"
+						>
 							{{ this.total_eras }}
 						</div>
 					</div>
@@ -172,9 +206,15 @@ export default {
 					</div>
 					<div class="card-body">
 						<div v-if="this.eras_since_redmark === null">
-							<ClipLoader size="15px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								size="15px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
-						<div v-else class="text-center">
+						<div 
+							v-else 
+							class="text-center"
+						>
 							{{ this.eras_since_redmark }}
 						</div>
 					</div>
@@ -187,9 +227,15 @@ export default {
 					</div>
 					<div class="card-body">
 						<div v-if="this.total_redmarks === null">
-							<ClipLoader size="15px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								size="15px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
-						<div v-else class="text-center">
+						<div 
+							v-else 
+							class="text-center"
+						>
 							{{ this.total_redmarks }}
 						</div>
 					</div>
@@ -200,23 +246,37 @@ export default {
 		<div class="row">
 			<div class="col-12 mt20">
 				<div class="card min-card-height scroll-h">
-					<div class="card-title" style="min-width: 100%;" :style="{ 'width': ((public_keys.length + 1) * 170) + 'px' }">
+					<div 
+						class="card-title" 
+						style="min-width: 100%;" 
+						:style="{ 'width': ((public_keys.length + 1) * 170) + 'px' }"
+					>
 						<div class="eras-row">
 							<div class="eras-cell-left bold fs13">
 								Era Start Time
 							</div>
-							<div v-for="public_key in public_keys" class="eras-cell-right bold fs13">
+							<div 
+								v-for="public_key in public_keys" 
+								class="eras-cell-right bold fs13"
+							>
 								{{ this.$root.formatHash(public_key, 12) }}
 							</div>
 						</div>
 					</div>
-					<div class="card-body scroll-400" style="min-width: 100%;" :style="{ 'width': ((public_keys.length + 1) * 170) + 'px' }">
+					<div 
+						class="card-body extend-era-table" 
+						style="min-width: 100%;" 
+						:style="{ 'width': ((public_keys.length + 1) * 170) + 'px' }"
+					>
 						<div 
 							v-for="(era, index) in eras" 
 							class="eras-row mt20 pb30 border-bottom"
 						>
 							<div class="eras-cell-left fs11">
-								<p class="fs12"><b>{{ index }}</b></p>
+								<p class="fs12">
+									<b>{{ index }}</b>
+								</p>
+
 								<p>
 									{{ era.era_start_time1 }}
 									&nbsp;
@@ -225,10 +285,27 @@ export default {
 									<small>UTC</small>
 								</p>
 							</div>
-							<div v-for="(address, key) in era.addresses" class="eras-cell-right">
-								<p class="fs11">
-									{{ address.in_pool ? 'In Pool' : 'Absent From Pool' }}
+
+							<div 
+								v-for="(address, key) in era.addresses" 
+								class="eras-cell-right"
+							>
+								<p
+									v-if="address.in_pool"
+									class="fs11"
+								>
+									In Pool
 								</p>
+								<p
+									v-else
+									class="fs11 text-red"
+								>
+									Absent From Pool 
+									<span class="bold text-red">
+										(REDMARK)
+									</span>
+								</p>
+
 								<p class="fs11">
 									{{ address.rewards }}% Rewards
 								</p>
@@ -322,6 +399,11 @@ export default {
 
 .min-card-height-rewards {
 	min-height: 300px;
+}
+
+.extend-era-table {
+	height: calc(100vh - 160px - 160px - 160px - 20px);
+	overflow-y: scroll;
 }
 
 </style>

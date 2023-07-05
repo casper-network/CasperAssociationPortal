@@ -153,21 +153,21 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.pinned_discussions   = response.detail.pinned_discussions;
-				this.new_discussions      = response.detail.new_discussions;
-				this.rank                 = response.detail.rank;
-				this.rank_total           = response.detail.rank_total;
-				this.total_stake          = response.detail.total_stake;
-				this.self_stake           = response.detail.self_stake;
-				this.delegators           = response.detail.delegators;
-				this.uptime               = response.detail.uptime;
-				this.eras_active          = response.detail.eras_active;
-				this.eras_since_redmark   = response.detail.eras_since_redmark;
-				this.total_redmarks       = response.detail.total_redmarks;
-				this.total_members        = response.detail.total_members;
-				this.verified_members     = response.detail.verified_members;
-				this.association_members  = response.detail.association_members;
-				this.trending_discussions = response.detail.trending_discussions;
+				this.pinned_discussions   = response.detail?.pinned_discussions;
+				this.new_discussions      = response.detail?.new_discussions;
+				this.rank                 = response.detail?.rank;
+				this.rank_total           = response.detail?.rank_total;
+				this.total_stake          = response.detail?.total_stake;
+				this.self_stake           = response.detail?.self_stake;
+				this.delegators           = response.detail?.delegators;
+				this.uptime               = response.detail?.uptime;
+				this.eras_active          = response.detail?.eras_active;
+				this.eras_since_redmark   = response.detail?.eras_since_redmark;
+				this.total_redmarks       = response.detail?.total_redmarks;
+				this.total_members        = response.detail?.total_members;
+				this.verified_members     = response.detail?.verified_members;
+				this.association_members  = response.detail?.association_members;
+				this.trending_discussions = response.detail?.trending_discussions;
 				this.progressBarWidth     = `${parseInt(this.uptime)}%`;
 			}
 		},
@@ -232,7 +232,10 @@ export default {
 							</div>
 							<div class="card-body">
 								<div v-if="this.pinned_discussions === null">
-									<ClipLoader size="25px" color="#ff2d2e"></ClipLoader>
+									<ClipLoader 
+										size="25px" 
+										color="#ff2d2e"
+									></ClipLoader>
 								</div>
 								<div v-else>
 									{{ this.pinned_discussions }}
@@ -247,7 +250,10 @@ export default {
 							</div>
 							<div class="card-body">
 								<div v-if="this.new_discussions === null">
-									<ClipLoader size="25px" color="#ff2d2e"></ClipLoader>
+									<ClipLoader 
+										size="25px" 
+										color="#ff2d2e"
+									></ClipLoader>
 								</div>
 								<div v-else>
 									{{ this.new_discussions }}
@@ -266,21 +272,37 @@ export default {
 									<b>Association Members</b>
 								</span>
 
-								<div v-if="inner_width > 600" class="float-right">
+								<div 
+									v-if="inner_width > 600" 
+									class="float-right"
+								>
 									<div class="fs12">
 										Total Members:&ensp;
 										<span v-if="this.total_members === null">
-											<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 										<span v-else>
 											{{ this.total_members }}
 										</span>
 
 										&ensp;
-										<img src="@/assets/images/favicon.png" class="tiny-img">
+										<img 
+											src="@/assets/images/favicon.png" 
+											class="tiny-img"
+										>
+
 										Verified Members:&ensp;
+
 										<span v-if="this.verified_members === null">
-											<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 										<span v-else>
 											{{ this.verified_members }}
@@ -288,21 +310,38 @@ export default {
 									</div>
 								</div>
 							</div>
-							<div v-if="inner_width <= 600" class="table-header">
+
+							<div 
+								v-if="inner_width <= 600" 
+								class="table-header"
+							>
 								<div class="fs12">
 									Total Members:&ensp;
 									<span v-if="this.total_members === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.total_members }}
 									</span>
 
 									&ensp;
-									<img src="@/assets/images/favicon.png" class="tiny-img">
+									<img 
+										src="@/assets/images/favicon.png" 
+										class="tiny-img"
+									>
+
 									Verified Members:&ensp;
+
 									<span v-if="this.verified_members === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.verified_members }}
@@ -311,7 +350,12 @@ export default {
 							</div>
 							<div class="table-header">
 								<span>
-									<input v-model="association_members_quickFilterText" type="text" class="form-control form-control-sm width-200" placeholder="Search">
+									<input 
+										v-model="association_members_quickFilterText" 
+										type="text" 
+										class="form-control form-control-sm width-200" 
+										placeholder="Search"
+									>
 								</span>
 							</div>
 							<div class="table-card">
@@ -344,7 +388,12 @@ export default {
 							</div>
 							<div class="table-header">
 								<span>
-									<input v-model="trending_discussions_quickFilterText" type="text" class="form-control form-control-sm width-200" placeholder="Search">
+									<input 
+										v-model="trending_discussions_quickFilterText" 
+										type="text" 
+										class="form-control form-control-sm width-200" 
+										placeholder="Search"
+									>
 								</span>
 							</div>
 							<div class="table-card">
@@ -379,13 +428,23 @@ export default {
 							<div class="card-body">
 								<p class="fs16">
 									Registered Node Rankings
-									<Popper hover arrow placement="right" class="fs11" content="Ranks all nodes on the platform - based on uptime, fee, delegator count, and stake amount, all sharing equally weighted importance.">
+									<Popper 
+										hover 
+										arrow 
+										placement="right" 
+										class="fs11" 
+										content="Ranks all nodes on the platform - based on uptime, fee, delegator count, and stake amount, all sharing equally weighted importance."
+									>
 										<i class="fa fa-info-circle pointer ml5 fs16"></i>
 									</Popper>
 								</p>
 								<div class="fs13 op7 mt5">
 									<span v-if="this.rank === null || this.rank_total === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.rank }} out of {{ this.rank_total }}
@@ -397,7 +456,11 @@ export default {
 								</p>
 								<div class="fs13 op7 mt5">
 									<span v-if="this.total_stake === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.total_stake.toLocaleString('en-US') }}
@@ -409,7 +472,11 @@ export default {
 								</p>
 								<div class="fs13 op7 mt5">
 									<span v-if="this.self_stake === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.self_stake.toLocaleString('en-US') }}
@@ -421,7 +488,11 @@ export default {
 								</p>
 								<div class="fs13 op7 mt5">
 									<span v-if="this.delegators === null">
-										<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											style="text-align: left; display: inline-block;" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</span>
 									<span v-else>
 										{{ this.delegators }}
@@ -430,7 +501,13 @@ export default {
 
 								<p class="fs16 pt20">
 									Uptime
-									<Popper hover arrow placement="right" class="fs11" content="Uptime is calculated from the percentage of eras you have joined multiplied by the rewards offered per era minus any eras you missed while your bid was high enough to participate in the validator pool.">
+									<Popper 
+										hover 
+										arrow 
+										placement="right" 
+										class="fs11" 
+										content="Uptime is calculated from the percentage of eras you have joined multiplied by the rewards offered per era minus any eras you missed while your bid was high enough to participate in the validator pool."
+									>
 										<i class="fa fa-info-circle pointer ml5 fs16"></i>
 									</Popper>
 								</p>
@@ -447,7 +524,11 @@ export default {
 											:style="{ '--progressBarWidth': progressBarWidth }"
 										></div>
 										<span class="progress-bar-center">
-											<ClipLoader style="text-align: left; display: inline-block;" size="20px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="20px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 									</div>
 									<div 
@@ -466,7 +547,11 @@ export default {
 									<p class="fs12 mt10">
 										Eras Active:&ensp;
 										<span v-if="this.eras_active === null">
-											<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 										<span v-else>
 											{{ this.eras_active }}
@@ -476,7 +561,11 @@ export default {
 									<p class="fs12">
 										Eras Since Redmark:&ensp;
 										<span v-if="this.eras_since_redmark === null">
-											<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 										<span v-else>
 											{{ this.eras_since_redmark }}
@@ -485,11 +574,15 @@ export default {
 
 									<p class="fs12">
 										Total Redmarks:&ensp;
-										<span v-if="this.eras_since_redmark === null">
-											<ClipLoader style="text-align: left; display: inline-block;" size="15px" color="#ff2d2e"></ClipLoader>
+										<span v-if="this.total_redmarks === null">
+											<ClipLoader 
+												style="text-align: left; display: inline-block;" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</span>
 										<span v-else>
-											{{ this.eras_since_redmark }}
+											{{ this.total_redmarks }}
 										</span>
 									</p>
 								</div>

@@ -301,7 +301,10 @@ export default {
 									class="fs11 text-red"
 								>
 									Absent From Pool 
-									<span class="bold text-red">
+									<span
+										v-if="address.redmark_era"
+										class="bold text-red"
+									>
 										(REDMARK)
 									</span>
 								</p>

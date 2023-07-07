@@ -48,7 +48,7 @@ export default {
 							arrow 
 							placement="right" 
 							class="fs11" 
-							content="Allows admin to adjust the settings for uptime, redmark rules, and voting lock"
+							content="Allows admin to adjust the settings for uptime, redmark rules, and voting eligibility rule"
 						>
 							<i class="fa fa-info-circle pointer ml5 fs16"></i>
 						</Popper>
@@ -90,16 +90,6 @@ export default {
 						<p class="mt40">
 							Uptime Probation Rules
 						</p>
-						<div class="form-group width-200 mt10">
-							<p class="op7 fs13">
-								Eras to include in calculation
-							</p>
-							<input 
-								v-model="this.$parent.uptime_calc_size" 
-								type="text" 
-								class="form-control"
-							>
-						</div>
 						<div class="form-group inline width-200 mr10">
 							<p class="op7 fs13">
 								Warning Level

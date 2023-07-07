@@ -44,7 +44,6 @@ export default {
 			prob_lock_perks:    false,
 
 			// monitoring
-			uptime_calc_size:   0,
 			uptime_warning:     0,
 			uptime_probation:   0,
 			eras_required_to_vote: 0,
@@ -171,7 +170,6 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response);
-				this.uptime_calc_size   = response.detail?.uptime_calc_size;
 				this.uptime_warning     = response.detail?.uptime_warning;
 				this.uptime_probation   = response.detail?.uptime_probation;
 				this.eras_required_to_vote = response.detail?.eras_required_to_vote;
@@ -247,7 +245,7 @@ export default {
 			) {
 				this.$root.toast(
 					'', 
-					'Updated Voting Lock rules', 
+					'Updated Voting Eligibility rules', 
 					'success'
 				);
 			}
@@ -255,11 +253,6 @@ export default {
 
 		async saveUptimeRules() {
 			this.loading = true;
-
-			let result1 = await this.saveSetting(
-				"uptime_calc_size", 
-				this.uptime_calc_size
-			);
 
 			let result2 = await this.saveSetting(
 				"uptime_warning", 
@@ -292,7 +285,7 @@ export default {
 			) {
 				this.$root.toast(
 					'', 
-					'Updated Uptime rules', 
+					'Updated Uptime Probation rules', 
 					'success'
 				);
 			}
@@ -319,7 +312,7 @@ export default {
 			) {
 				this.$root.toast(
 					'', 
-					'Updated Redmark rules', 
+					'Updated Redmark Revocation rules', 
 					'success'
 				);
 			}

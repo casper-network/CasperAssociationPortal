@@ -49,8 +49,8 @@ export default {
 
 			if (response.status == 200) {
 				console.log(response.detail);
-				this.public_keys        = response.detail.public_keys;
-				this.eras               = response.detail.eras;
+				this.public_keys        = response.detail?.public_keys;
+				this.eras               = response.detail?.eras;
 				this.selected_validator = this.public_keys[0];
 			}
 		},
@@ -72,10 +72,10 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.uptime             = response.detail.uptime;
-				this.total_eras         = response.detail.total_eras;
-				this.eras_since_redmark = response.detail.eras_since_redmark;
-				this.total_redmarks     = response.detail.total_redmarks;
+				this.uptime             = response.detail?.uptime;
+				this.total_eras         = response.detail?.total_eras;
+				this.eras_since_redmark = response.detail?.eras_since_redmark;
+				this.total_redmarks     = response.detail?.total_redmarks;
 			}
 		},
 

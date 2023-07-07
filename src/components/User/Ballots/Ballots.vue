@@ -75,11 +75,11 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.history_required = response.detail.history_required;
-				this.eras_of_history  = response.detail.eras_of_history;
-				this.redmarks         = response.detail.redmarks;
-				this.redmarks_window  = response.detail.redmarks_window;
-				this.can_vote         = response.detail.can_vote;
+				this.history_required = response.detail?.history_required;
+				this.eras_of_history  = response.detail?.eras_of_history;
+				this.redmarks         = response.detail?.redmarks;
+				this.redmarks_window  = response.detail?.redmarks_window;
+				this.can_vote         = response.detail?.can_vote;
 
 				if (parseInt(this.eras_of_history) == 1) {
 					this.plural_history1 = 'era';
@@ -132,19 +132,36 @@ export default {
 						<p>
 							Your account has been in good standing for 
 							<span v-if="eras_of_history === null">
-								<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="15px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
-							<span v-else>{{ eras_of_history }}</span>
+							<span v-else>
+								{{ eras_of_history }}
+							</span>
 							{{ plural_history1 }} out of 
 							<span v-if="history_required === null">
-								<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="15px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
-							<span v-else>{{ history_required }}</span>
+							<span v-else>
+								{{ history_required }}
+							</span>
 							required. 
 						</p>
+
 						<p>
 							<span v-if="redmarks === null">
-								<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="15px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
 							<span v-else>
 								Detected {{ redmarks }} {{ plural_redmarks1 }} in the last {{ redmarks_window }} {{ plural_redmarks2 }}.
@@ -153,13 +170,23 @@ export default {
 
 						<p class="pt5">
 							<span v-if="can_vote === null">
-								<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="15px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
 							<span v-else>
-								<span v-if="can_vote" class="text-green bold">
+								<span 
+									v-if="can_vote" 
+									class="text-green bold"
+								>
 									Good work! You are eligible to vote.
 								</span>
-								<span v-else class="text-red bold">
+								<span 
+									v-else 
+									class="text-red bold"
+								>
 									You are not eligible to vote at this time.
 								</span>
 							</span>

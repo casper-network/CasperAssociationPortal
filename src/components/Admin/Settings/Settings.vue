@@ -47,7 +47,7 @@ export default {
 			uptime_calc_size:   0,
 			uptime_warning:     0,
 			uptime_probation:   0,
-			minimum_eras:       0,
+			eras_required_to_vote: 0,
 			eras_since_redmark: 0,
 			redmark_revoke:     0,
 			redmark_calc_size:  0,
@@ -174,7 +174,7 @@ export default {
 				this.uptime_calc_size   = response.detail?.uptime_calc_size;
 				this.uptime_warning     = response.detail?.uptime_warning;
 				this.uptime_probation   = response.detail?.uptime_probation;
-				this.minimum_eras       = response.detail?.minimum_eras;
+				this.eras_required_to_vote = response.detail?.eras_required_to_vote;
 				this.eras_since_redmark = response.detail?.eras_since_redmark;
 				this.redmark_revoke     = response.detail?.redmark_revoke;
 				this.redmark_calc_size  = response.detail?.redmark_calc_size;
@@ -230,8 +230,8 @@ export default {
 			this.loading = true;
 
 			let result1 = await this.saveSetting(
-				"minimum_eras", 
-				this.minimum_eras
+				"eras_required_to_vote", 
+				this.eras_required_to_vote
 			);
 
 			let result2 = await this.saveSetting(

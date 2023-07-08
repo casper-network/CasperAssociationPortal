@@ -234,11 +234,24 @@ export default {
 					<div class="card-title">
 						Add a Validator Node
 					</div>
-					<div v-if="this.thinking" class="card-body">
-						<ClipLoader size="25px" color="#ff2d2e"></ClipLoader>
+					<div 
+						v-if="this.thinking" 
+						class="card-body"
+					>
+						<ClipLoader 
+							size="25px" 
+							color="#ff2d2e"
+						></ClipLoader>
 					</div>
-					<div v-else class="card-body">
-						<div class="mb20" v-if="affiliated_nodes.length > 0">
+
+					<div 
+						v-else 
+						class="card-body"
+					>
+						<div 
+							v-if="affiliated_nodes.length > 0"
+							class="mb20"
+						>
 							<p class="fs16 mb20">
 								Hey! We found {{ nodes_plural3 }} of your affiliated nodes in the account info contract:
 							</p>
@@ -246,9 +259,15 @@ export default {
 							<code v-for="node in affiliated_nodes">
 								{{ node }}&ensp;
 								<i class="fa fa-check text-green"></i>
-								<span class="bold text-green">Verified</span>
-								<button class="fs12 btn btn-sm btn-success m5 bold" @click="autoAddNode(node)">
-									<i class="fa fa-plus"></i>Add Node
+								<span class="bold text-green">
+									Verified
+								</span>
+								<button 
+									class="fs12 btn btn-sm btn-success m5 bold" 
+									@click="autoAddNode(node)"
+								>
+									<i class="fa fa-plus"></i>
+									Add Node
 								</button>
 								<br>
 							</code>
@@ -262,23 +281,47 @@ export default {
 							</p>
 						</div>
 
-						<button v-if="!manually_adding" class="btn btn-success" @click="startFlow">
+						<button 
+							v-if="!manually_adding" 
+							class="btn btn-success" 
+							@click="startFlow"
+						>
 							Manually Add a Node
 						</button>
 
-						<form @submit.prevent v-if="manually_adding">
+						<form 
+							@submit.prevent 
+							v-if="manually_adding"
+						>
 							<div class="form-group mt20">
 								<p class="mb10">
 									Add your validator below
 								</p>
 
-								<input class="form-control mb10 short-icon-end" type="text" name="" v-model="selected_validator">
-								<i v-if="node_verified" class="fa fa-check text-green"></i>
+								<input 
+									class="form-control mb10 short-icon-end" 
+									type="text" 
+									v-model="selected_validator"
+									placeholder="Enter Validator ID" 
+								>
+								<i 
+									v-if="node_verified" 
+									class="fa fa-check text-green"
+								></i>
 
-								<button v-if="!finding_node" class="btn btn-success width-150 mr5" @click="verifyNode()">
+								<button 
+									v-if="!finding_node" 
+									class="btn btn-success width-150 mr5" 
+									@click="verifyNode()"
+								>
 									Verify My Node
 								</button>
-								<ClipLoader v-else size="15px" color="#ff2d2e" class="clip-loader-inline"></ClipLoader>
+								<ClipLoader 
+									v-else 
+									size="15px" 
+									color="#ff2d2e" 
+									class="clip-loader-inline"
+								></ClipLoader>
 
 								<div v-if="node_verified">
 									<p class="pt20">
@@ -294,7 +337,12 @@ export default {
 												Download this message file for signing
 											</td>
 											<td>
-												<button class="btn btn-sm fs12 btn-success bold" @click="downloadMessage()">Download</button>
+												<button 
+													class="btn btn-sm fs12 btn-success bold" 
+													@click="downloadMessage()"
+												>
+													Download
+												</button>
 											</td>
 										</tr>
 
@@ -306,10 +354,18 @@ export default {
 												Sign the message with your node key
 											</td>
 											<td>
-												<button class="btn btn-sm fs12 btn-success bold" @click="gotoGithub()">Go to Github</button>
+												<button 
+													class="btn btn-sm fs12 btn-success bold" 
+													@click="gotoGithub()"
+												>
+													Go to Github
+												</button>
 											</td>
 										</tr>
-										<tr v-else class="div-disabled">
+										<tr 
+											v-else 
+											class="div-disabled"
+										>
 											<td class="bold">
 												2.
 											</td>
@@ -317,7 +373,9 @@ export default {
 												Sign the message with your node key
 											</td>
 											<td>
-												<button class="btn btn-sm fs12 btn-success bold">Go to Github</button>
+												<button class="btn btn-sm fs12 btn-success bold">
+													Go to Github
+												</button>
 											</td>
 										</tr>
 
@@ -343,7 +401,10 @@ export default {
 												></DropZone>
 											</td>
 										</tr>
-										<tr v-else class="div-disabled">
+										<tr 
+											v-else 
+											class="div-disabled"
+										>
 											<td class="bold">
 												3.
 											</td>
@@ -367,8 +428,13 @@ export default {
 							</div>
 						</form>
 
-						<p v-if="signature_verified" class="mt20 fs18 text-green">
-							<span class="fs12">{{ selected_validator }}</span>
+						<p 
+							v-if="signature_verified" 
+							class="mt20 fs18 text-green"
+						>
+							<span class="fs12">
+								{{ selected_validator }}
+							</span>
 							<br>
 							Verified
 							<i class="fa fa-check"></i>

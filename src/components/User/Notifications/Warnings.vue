@@ -117,12 +117,25 @@ export default {
 							<br/>
 							{{ warning.message }}
 							<br/>
-						<button 
-							class="btn btn-neutral ml0" 
-							@click="this.$root.routeTo('/u/nodes?v='+warning.public_key)"
-						>
-							Take Me to My Nodes
-						</button>
+
+							<button 
+								class="btn btn-neutral ml0" 
+								@click="this.$root.routeTo('/u/nodes?v='+warning.public_key)"
+							>
+								Take Me to My Nodes
+							</button>
+							<button 
+								class="btn btn-neutral ml0" 
+								@click="this.$root.routeTo('/u/membership')"
+							>
+								View My Membership
+							</button>
+							<button 
+								class="btn btn-neutral ml0" 
+								@click="this.$root.routeTo('/u/membership')"
+							>
+								View My Membership
+							</button>
 						</span>
 					</div>
 				</div>

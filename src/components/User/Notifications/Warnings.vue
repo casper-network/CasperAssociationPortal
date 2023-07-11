@@ -119,18 +119,21 @@ export default {
 							<br/>
 
 							<button 
+								v-if="warning.type == 'warning'"
 								class="btn btn-neutral ml0" 
 								@click="this.$root.routeTo('/u/nodes?v='+warning.public_key)"
 							>
 								Take Me to My Nodes
 							</button>
 							<button 
+								v-else-if="warning.type == 'probation'"
 								class="btn btn-neutral ml0" 
 								@click="this.$root.routeTo('/u/membership')"
 							>
 								View My Membership
 							</button>
 							<button 
+								v-else-if="warning.type == 'suspension'"
 								class="btn btn-neutral ml0" 
 								@click="this.$root.routeTo('/u/membership')"
 							>

@@ -86,11 +86,28 @@ export default {
 					v-for="warning in warnings"
 					class="warning-row"
 				>
-					<div class="warning-icon">
-						<i v-if="warning.type == 'warning'" class="fa fa-warning fs20 white"></i>
-						<i v-else-if="warning.type == 'probation'" class="fa fa-times fs26 white"></i>
-						<img v-else-if="warning.type == 'suspension'" class="skull" src="@/assets/images/skull-crossbones-solid.svg">
+					<div 
+						v-if="warning.type == 'warning'"
+						class="warning-icon"
+					>
+						<i class="fa fa-warning fs20"></i>
 					</div>
+					<div 
+						v-else-if="warning.type == 'probation'"
+						class="warning-icon"
+					>
+						<i class="fa fa-times-circle fs26"></i>
+					</div>
+					<div 
+						v-else-if="warning.type == 'suspension'"
+						class="warning-icon"
+					>
+						<img 
+							class="skull" 
+							src="@/assets/images/skull-crossbones-solid.svg"
+						>
+					</div>
+
 					<div class="warning-banner-content">
 						<span>
 							<span class="fs12 op6">
@@ -100,14 +117,24 @@ export default {
 							<br/>
 							{{ warning.message }}
 							<br/>
-						<button class="btn btn-neutral ml0" @click="this.$root.routeTo('/u/nodes?v='+warning.public_key)">Take Me to My Nodes</button>
+						<button 
+							class="btn btn-neutral ml0" 
+							@click="this.$root.routeTo('/u/nodes?v='+warning.public_key)"
+						>
+							Take Me to My Nodes
+						</button>
 						</span>
 					</div>
 				</div>
 
-				<div v-if="warnings.length == 0" class="warning-row">
+				<div 
+					v-if="warnings.length == 0" 
+					class="warning-row"
+				>
 					<div class="warning-banner-content pl20">
-						<p>Nothing here</p>
+						<p>
+							Nothing here
+						</p>
 					</div>
 				</div>
 			</div>

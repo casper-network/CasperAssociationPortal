@@ -97,7 +97,10 @@ export default {
 				this.total_eras         = null;
 				this.eras_since_redmark = null;
 				this.total_redmarks     = null;
-				this.getNodeData();
+
+				if (this.selected_validator) {
+					this.getNodeData();
+				}
 			}
 		}
 	}

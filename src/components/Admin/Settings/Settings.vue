@@ -277,7 +277,6 @@ export default {
 			this.loading = false;
 
 			if (
-				result1 &&
 				result2 &&
 				result3 &&
 				result4 &&

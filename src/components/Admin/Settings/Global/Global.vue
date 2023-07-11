@@ -235,7 +235,13 @@ export default {
 					<div class="card-body">
 						<p class="bold mt10">
 							Status Page Lock Rules
-							<Popper hover arrow placement="right" class="fs11" content="Locks users out of specified areas of the dashboard on probation/suspension">
+							<Popper 
+								hover 
+								arrow 
+								placement="right" 
+								class="fs11" 
+								content="Locks users out of specified areas of the dashboard on probation"
+							>
 								<i class="fa fa-info-circle pointer ml5 fs16"></i>
 							</Popper>
 						</p>
@@ -267,16 +273,32 @@ export default {
 								</p>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.kyc_lock_nodes">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.kyc_lock_nodes"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.kyc_lock_discs">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.kyc_lock_discs"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.kyc_lock_votes">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.kyc_lock_votes"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.kyc_lock_perks">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.kyc_lock_perks"
+								>
 							</div>
 						</div>
 
@@ -287,23 +309,48 @@ export default {
 								</p>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.prob_lock_nodes">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.prob_lock_nodes"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.prob_lock_discs">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.prob_lock_discs"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.prob_lock_votes">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.prob_lock_votes"
+								>
 							</div>
 							<div class="toggle-cell">
-								<input type="checkbox" class="form-check-input pointer" v-model="this.$parent.prob_lock_perks">
+								<input 
+									type="checkbox" 
+									class="form-check-input pointer" 
+									v-model="this.$parent.prob_lock_perks"
+								>
 							</div>
 						</div>
 
 						<p class="bold mt40 mb20">
 							Contact Form Recipients
-							<Popper hover arrow placement="right" class="fs11" content="Add new recipient">
-								<i class="fa fa-plus pointer ml5 fs18 add-plus" @click="add_contact_modal_open = true"></i>
+							<Popper 
+								hover 
+								arrow 
+								placement="right" 
+								class="fs11" 
+								content="Add new recipient"
+							>
+								<i 
+									class="fa fa-plus pointer ml5 fs18 add-plus" 
+									@click="add_contact_modal_open = true"
+								></i>
 							</Popper>
 						</p>
 
@@ -325,12 +372,23 @@ export default {
 
 						<p class="bold mt40 mb20">
 							Terms of Use
-							<Popper hover arrow placement="right" class="fs11" content="Upload terms of use document.">
+							<Popper 
+								hover 
+								arrow 
+								placement="right" 
+								class="fs11" 
+								content="Upload terms of use document."
+							>
 								<i class="fa fa-info-circle pointer ml5 fs16"></i>
 							</Popper>
 						</p>
 
-						<input type="text" disabled class="form-input p5" :value="this.$parent.esign_doc">
+						<input 
+							type="text" 
+							disabled 
+							class="form-input p5" 
+							:value="this.$parent.esign_doc"
+						>
 
 						<p class="mt10 op7 fs13">
 							Drag & drop a file or click below to upload a new Terms of Use document.
@@ -367,13 +425,24 @@ export default {
 				Add a new contact form recipient by entering their email address below.
 			</p>
 
-			<input type="email" class="form-control" v-model="new_contact_recipient" placeholder="Enter email">
+			<input 
+				type="email" 
+				class="form-control" 
+				v-model="new_contact_recipient" 
+				placeholder="Enter email"
+			>
 
-			<button class="btn btn-success form-control btn-inline ml0 mt20 mb10" @click="add_contact_modal_open = false">
+			<button 
+				class="btn btn-success form-control btn-inline ml0 mt20 mb10" 
+				@click="add_contact_modal_open = false"
+			>
 				Cancel
 			</button>
 
-			<button class="btn btn-success form-control btn-inline mt20 mb10" @click="addContactRecipient()">
+			<button 
+				class="btn btn-success form-control btn-inline mt20 mb10" 
+				@click="addContactRecipient()"
+			>
 				<i class="fa fa-plus bold"></i>
 				Add
 			</button>

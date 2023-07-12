@@ -169,11 +169,11 @@ export default {
 
 						<p>
 							<i
-								v-if="parseInt(this.eras_of_history) < parseInt(this.history_required)"
+								v-if="parseInt(this.redmarks) > 0"
 								class="fa fa-times text-red"
 							></i>
 							<i
-								v-else-if="parseInt(this.eras_of_history) >= parseInt(this.history_required)"
+								v-else-if="parseInt(this.redmarks) == 0"
 								class="fa fa-check text-green"
 							></i>
 							<i

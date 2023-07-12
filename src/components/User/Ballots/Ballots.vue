@@ -273,8 +273,6 @@ export default {
 		>
 			My Votes
 		</div>
-
-
 	</div>
 
 	<Active v-if="this.uri_category == 'active'"></Active>

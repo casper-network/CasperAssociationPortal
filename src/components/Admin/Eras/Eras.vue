@@ -76,8 +76,8 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.public_keys        = response.detail.public_keys;
-				this.eras               = response.detail.eras;
+				this.public_keys        = response.detail?.public_keys;
+				this.eras               = response.detail?.eras;
 				this.selected_validator = this.public_keys[0];
 			}
 		},
@@ -88,7 +88,7 @@ export default {
 
 			const response = await api(
 				'GET',
-				'user/get-node-data',
+				'admin/get-node-data',
 				{
 					public_key: s
 				},
@@ -99,19 +99,27 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.uptime             = response.detail.uptime;
-				this.total_eras         = response.detail.total_eras;
-				this.eras_since_redmark = response.detail.eras_since_redmark;
-				this.total_redmarks     = response.detail.total_redmarks;
+				this.uptime             = response.detail?.uptime;
+				this.total_eras         = response.detail?.total_eras;
+				this.eras_since_redmark = response.detail?.eras_since_redmark;
+				this.total_redmarks     = response.detail?.total_redmarks;
 			}
 		},
 
 		copyValidatorId(e) {
 			let that = this;
 			let vid = this.$refs.selected_validator.value;
-			copyText(vid, undefined, function(e) {
-				that.$root.toast("Public key copied to clipboard", "", "info");
-			});
+			copyText(
+				vid, 
+				undefined, 
+				function(e) {
+					that.$root.toast(
+						"Public key copied to clipboard",
+						"",
+						"info"
+					);
+				}
+			);
 		}
 	},
 
@@ -128,7 +136,10 @@ export default {
 			this.total_eras         = null;
 			this.eras_since_redmark = null;
 			this.total_redmarks     = null;
-			this.getNodeData();
+
+			if (this.selected_validator) {
+				this.getNodeData();
+			}
 		}
 	}
 };
@@ -377,7 +388,10 @@ export default {
 									class="fs11 text-red"
 								>
 									Absent From Pool 
-									<span class="bold text-red">
+									<span
+										v-if="address.redmark_era"
+										class="bold text-red"
+									>
 										(REDMARK)
 									</span>
 								</p>

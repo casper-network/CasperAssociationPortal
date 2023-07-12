@@ -48,27 +48,28 @@ export default {
 							arrow 
 							placement="right" 
 							class="fs11" 
-							content="Allows admin to adjust the settings for uptime, redmark rules, and voting lock"
+							content="Allows admin to adjust the settings for uptime, redmark rules, and voting eligibility rule"
 						>
 							<i class="fa fa-info-circle pointer ml5 fs16"></i>
 						</Popper>
 					</div>
 					<div class="card-body">
 						<p class="mt10">
-							Voting Lock
+							Voting Eligibility Rules
 						</p>
 						<div class="form-group inline width-200 mr10 mt10">
 							<p class="op7 fs13">
-								Eras required to be active
+								Eras required to vote
 							</p>
 							<input 
-								v-model="this.$parent.minimum_eras" 
+								v-model="this.$parent.eras_required_to_vote" 
 								type="text" 
-								class="form-control">
+								class="form-control"
+							>
 						</div>
 						<div class="form-group inline width-200 mr10">
 							<p class="op7 fs13">
-								Eras since redmark
+								Members cannot have any redmarks within this many eras to vote
 							</p>
 							<input 
 								v-model="this.$parent.eras_since_redmark" 
@@ -87,18 +88,8 @@ export default {
 
 
 						<p class="mt40">
-							Uptime Rules
+							Uptime Probation Rules
 						</p>
-						<div class="form-group width-200 mt10">
-							<p class="op7 fs13">
-								Eras to include in calculation
-							</p>
-							<input 
-								v-model="this.$parent.uptime_calc_size" 
-								type="text" 
-								class="form-control"
-							>
-						</div>
 						<div class="form-group inline width-200 mr10">
 							<p class="op7 fs13">
 								Warning Level
@@ -121,7 +112,7 @@ export default {
 						</div>
 						<div class="form-group mt10">
 							<p class="op7 fs13">
-								Correction grace period until suspension
+								Correction grace period until revocation
 							</p>
 							<div class="form-group inline width-200 mr10">
 								<select 
@@ -158,11 +149,11 @@ export default {
 
 
 						<p class="mt40">
-							Redmark Rules
+							Redmark Revocation Rules
 						</p>
 						<div class="form-group inline width-200 mr10">
 							<p class="op7 fs13">
-								Redmark to Revocation
+								Redmarks to Revocation
 							</p>
 							<input 
 								v-model="this.$parent.redmark_revoke" 
@@ -172,7 +163,7 @@ export default {
 						</div>
 						<div class="form-group inline width-200 mt10">
 							<p class="op7 fs13">
-								Eras to include in calculation
+								Revocation will occur if the specified amount of redmarks are accrued within this many eras
 							</p>
 
 							<input 

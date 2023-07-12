@@ -105,7 +105,6 @@ export default {
 		sus_decision:        '',
 		settings: {
 			uptime_probation:  0,
-			uptime_calc_size:  0,
 			redmark_revoke:    0,
 			redmark_calc_size: 0
 		},

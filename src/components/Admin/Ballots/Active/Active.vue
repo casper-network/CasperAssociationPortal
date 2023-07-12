@@ -156,7 +156,12 @@ export default {
 				<div class="card">
 					<div class="table-header">
 						<span>
-							<input v-model="quickFilterText" type="text" class="form-control form-control-sm width-200" placeholder="Search">
+							<input 
+								v-model="quickFilterText" 
+								type="text" 
+								class="form-control form-control-sm width-200" 
+								placeholder="Search"
+							>
 						</span>
 					</div>
 					<div class="table-card">

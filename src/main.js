@@ -744,6 +744,7 @@ app.use(VueMobileDetection)
 app.use(VueApexCharts)
 
 let cookie_config = {
+	expires: '365d',
 	path: '/'
 }
 

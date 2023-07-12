@@ -209,7 +209,7 @@ export default {
 									</span>
 								</p>
 								<p class="fs14 bold mt10">
-									Total redmarks:&ensp;
+									Total redmarks for all nodes:&ensp;
 									<span v-if="total_redmarks === null">
 										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
 									</span>

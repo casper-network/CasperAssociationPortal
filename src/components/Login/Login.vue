@@ -9,10 +9,11 @@ export default {
 	data() {
 		return {
 			inputPassword: "",
-			inputMfa: "",
-			step: 1,
-			mfa_message: "We sent a 2FA verification code to your inbox.",
-			loading: false
+			inputMfa:      "",
+			step:          1,
+			mfa_message:   "We sent a 2FA verification code to your inbox.",
+			loading:       false,
+			email_regex:   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		}
 	},
 
@@ -33,16 +34,32 @@ export default {
 				!this.$root.inputEmail ||
 				this.$root.inputEmail == ""
 			) {
-				this.$root.toast('Email', 'Please enter your email address to login', 'info');
+				this.$root.toast(
+					'Email', 
+					'Please enter your email address to login', 
+					'info'
+				);
+				this.$refs["email_ref"].focus();
+				return;
+			}
+
+			if (!this.$root.inputEmail.match(this.email_regex)) {
+				this.$root.toast(
+					'Email', 
+					'Invalid email address specified', 
+					'error'
+				);
 				this.$refs["email_ref"].focus();
 				return;
 			}
 
 			this.step = 2;
+
 			setTimeout(function() {
 				self.$refs["password_ref"].focus();
 			},100)
 		},
+
 		async do_login() {
 			let self = this;
 
@@ -50,13 +67,21 @@ export default {
 				!self.inputPassword ||
 				self.inputPassword == ""
 			) {
-				self.$root.toast('Password', 'Please enter your password to login', 'info');
+				self.$root.toast(
+					'Password', 
+					'Please enter your password to login', 
+					'info'
+				);
 				self.$refs["password_ref"].focus();
 				return;
 			}
 
 			this.loading = true;
-			const login_result = await this.$root.login(this.$root.inputEmail, this.inputPassword);
+
+			const login_result = await this.$root.login(
+				this.$root.inputEmail, 
+				this.inputPassword
+			);
 
 			if (login_result) {
 				this.loading = false;
@@ -70,10 +95,13 @@ export default {
 			},100)
 			*/
 		},
+
 		goback() {
 			let self = this;
 
-			if (self.step == 1) return;
+			if (self.step == 1) {
+				return;
+			}
 
 			self.step = self.step - 1;
 
@@ -92,13 +120,25 @@ export default {
 		<div class="checker-bottom"></div>
 
 		<div class="login-box-wrap">
-			<div v-if="loading" class="ajax-box">
-				<ClipLoader size="45px" color="#ff2d2e"></ClipLoader>
+			<div 
+				v-if="loading" 
+				class="ajax-box"
+			>
+				<ClipLoader 
+					size="45px" 
+					color="#ff2d2e"
+				></ClipLoader>
 			</div>
 
 			<div class="login-box">
-				<a :href="this.$root.frontend_url" class="nostyle">
-					<img src="@/assets/images/logo2.png" class="login-img">
+				<a 
+					:href="this.$root.frontend_url" 
+					class="nostyle"
+				>
+					<img 
+						src="@/assets/images/logo2.png" 
+						class="login-img"
+					>
 				</a>
 
 				<p class="mt20 fs12">
@@ -108,45 +148,112 @@ export default {
 					</a>
 				</p>
 
-				<div v-show="step == 1" class="login-form-wrap">
-					<label>Log in</label>
+				<div 
+					v-show="step == 1" 
+					class="login-form-wrap"
+				>
+					<label>
+						Log in
+					</label>
+
 					<div class="form-group pt10 login-form">
 						<form @submit.prevent>
-							<input class="form-control mb5" v-model="this.$root.inputEmail" type="email" placeholder="Email Address" ref="email_ref" autofocus autosave="" autocomplete="">
-							<button @click="this.gotoStep2" class="btn btn-lime mt10 full-width bold">Next</button>
+							<input 
+								class="form-control mb5" 
+								v-model="this.$root.inputEmail" 
+								type="email" 
+								placeholder="Email Address" 
+								ref="email_ref" 
+								autofocus 
+								autosave="" 
+								autocomplete=""
+							>
+							<button 
+								@click="this.gotoStep2" 
+								class="btn btn-lime mt10 full-width bold"
+							>
+								Next
+							</button>
 						</form>
 					</div>
 				</div>
 
-				<div v-show="step == 2" class="login-form-wrap">
-					<label>Hello there</label>
+				<div 
+					v-show="step == 2" 
+					class="login-form-wrap"
+				>
+					<label>
+						Hello there
+					</label>
+
 					<div class="form-group pt10 login-form">
 						<form @submit.prevent>
-							<input class="form-control mb5" v-model="inputPassword" type="password" placeholder="Password" ref="password_ref">
-							<button class="btn btn-lime mt10 full-width bold" @click="this.do_login">Login</button>
+							<input 
+								class="form-control mb5" 
+								v-model="inputPassword" 
+								type="password" 
+								placeholder="Password" 
+								ref="password_ref"
+							>
+							<button 
+								class="btn btn-lime mt10 full-width bold" 
+								@click="this.do_login"
+							>
+								Login
+							</button>
 						</form>
 					</div>
 					<div class="pt15">
-						<span @click="goback()" class="pointer green">Back</span>
+						<span 
+							@click="goback()" 
+							class="pointer green"
+						>
+							Back
+						</span>
 						<p class="float-right">
-							<span @click="this.$root.routeTo('forgot-password')" class="pointer green">Forgot Password?</span>
+							<span 
+								@click="this.$root.routeTo('forgot-password')" 
+								class="pointer green"
+							>
+								Forgot Password?
+							</span>
 						</p>
 					</div>
 				</div>
 
 				<!-- not used -->
-				<div v-show="step == 3" class="login-form-wrap">
-					<label>Second Step Verification</label>
-					<p>You're trying to log in. To make sure your account stays secure, we must verify your identity. {{ mfa_message }}</p>
+				<div 
+					v-show="step == 3" 
+					class="login-form-wrap"
+				>
+					<label>
+						Second Step Verification
+					</label>
+					<p>
+						You're trying to log in. To make sure your account stays secure, we must verify your identity. {{ mfa_message }}
+					</p>
 					<div class="form-group pt10 login-form">
 						<form @submit.prevent>
-							<input class="form-control mb5" :value="inputMfa.toUpperCase()" @input="inputMfa = $event.target.value.toUpperCase()" type="text" placeholder="Enter Verification Code" ref="mfa_ref">
-							<button class="btn btn-lime mt10 full-width bold">Verify</button>
+							<input 
+								class="form-control mb5" 
+								:value="inputMfa.toUpperCase()" 
+								@input="inputMfa = $event.target.value.toUpperCase()" 
+								type="text" 
+								placeholder="Enter Verification Code" 
+								ref="mfa_ref"
+							>
+							<button 
+								class="btn btn-lime mt10 full-width bold"
+							>
+								Verify
+							</button>
 						</form>
 					</div>
 					<div class="pt15">
 						<p class="float-right">
-							<span class="pointer green">Resend Code</span>
+							<span class="pointer green">
+								Resend Code
+							</span>
 						</p>
 					</div>
 				</div>

@@ -40,7 +40,7 @@ export default {
 						if (!params) return '';
 						if (!params.data) return '';
 
-						let ret = 'Suspended';
+						let ret = 'Revoked';
 
 						if (params.data.reinstatable == 1) {
 							ret = 'Waiting for letter';
@@ -55,7 +55,7 @@ export default {
 				},
 				{
 					field: 'suspended_at',
-					headerName: 'Suspended',
+					headerName: 'Revoked',
 					sortable: true
 				},
 				{
@@ -285,7 +285,7 @@ export default {
 			<hr>
 
 			<p class="mt20">
-				If you have reviewed the user's request for reinstatement and are satistfied with their reasoning, then click YES to reinstate their membership. Otherwise click NO to reset the suspension.
+				If you have reviewed the user's request for reinstatement and are satistfied with their reasoning, then click YES to reinstate their membership. Otherwise click NO to reset the revocation.
 			</p>
 
 			<button class="btn btn-success form-control btn-inline ml0 mt20 mb10" @click="reinstateUser()">

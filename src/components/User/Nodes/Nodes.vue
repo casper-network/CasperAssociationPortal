@@ -121,9 +121,9 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.public_keys = response.detail.public_keys;
-				this.ranking     = response.detail.ranking;
-				this.mbs         = response.detail.mbs;
+				this.public_keys = response.detail?.public_keys;
+				this.ranking     = response.detail?.ranking;
+				this.mbs         = response.detail?.mbs;
 				this.price_data  = [{
 					name: "Price",
 					data: response.detail.price_data
@@ -177,19 +177,19 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response.detail);
-				this.stake_amount       = response.detail.stake_amount;
-				this.delegators         = response.detail.delegators;
-				this.uptime             = response.detail.uptime;
+				this.stake_amount       = response.detail?.stake_amount;
+				this.delegators         = response.detail?.delegators;
+				this.uptime             = response.detail?.uptime;
 				this.progressBarWidth   = `${parseInt(this.uptime)}%`;
-				this.total_eras         = response.detail.total_eras;
-				this.eras_since_redmark = response.detail.eras_since_redmark;
-				this.total_redmarks     = response.detail.total_redmarks;
-				this.updates            = response.detail.updates;
+				this.total_eras         = response.detail?.total_eras;
+				this.eras_since_redmark = response.detail?.eras_since_redmark;
+				this.total_redmarks     = response.detail?.total_redmarks;
+				this.updates            = response.detail?.updates;
 				this.progressBarWidth2  = this.updates + '%';
-				this.daily_earning      = response.detail.daily_earning;
+				this.daily_earning      = response.detail?.daily_earning;
 				this.rewards_data       = [{
 					name: "Self Stake",
-					data: response.detail.rewards_data
+					data: response.detail?.rewards_data
 				}];
 			}
 		},

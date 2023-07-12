@@ -46,16 +46,16 @@ export default {
 			<div class="col-12 mt20">
 				<div class="card">
 					<div class="card-title">
-						Your membership is suspended
+						Your membership is revoked
 					</div>
 					<div class="card-body">
 						<p>
-							Your membership has been suspended for 
+							Your membership has been revoked for 
 							<b>{{ this.$parent.suspension_reason }}</b>.
 						</p>
 
 						<p class="mt20">
-							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>{{ this.$parent.settings.uptime_calc_size }}</b> eras and you have no more than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
+							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>360</b> eras and you have no more than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
 						</p>
 
 						<ClipLoader 

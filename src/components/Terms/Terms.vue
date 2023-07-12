@@ -44,8 +44,8 @@ export default {
 				let that        = this;
 				this.pdf_name   = response.detail?.name;
 				this.pdf_ext    = response.detail?.ext;
-				this.pdf_source = `${this.$root.api_url}/documents/terms-of-service.${this.pdf_ext}?v=${Math.random().toString().split('.')[1]}`;
-				// this.pdf_source = response.detail?.url;
+				// this.pdf_source = `${this.$root.api_url}/documents/terms-of-service.${this.pdf_ext}?v=${Math.random().toString().split('.')[1]}`;
+				this.pdf_source = response.detail?.url;
 
 				if (this.pdf_ext == 'txt') {
 					fetch(this.pdf_source).then(function(resp) {
@@ -85,7 +85,10 @@ export default {
 						<hr>
 					</div>
 
-					<div v-if="pdf_ext == 'pdf'" class="col-md-12 p0">
+					<div 
+						v-if="pdf_ext == 'pdf'" 
+						class="col-md-12 p0"
+					>
 						<vue-pdf-embed
 							:source="pdf_source"
 						></vue-pdf-embed>
@@ -100,7 +103,10 @@ export default {
 						" 
 						class="col-md-12 p0"
 					>
-						<img :src="pdf_source" style="width: 100%; height: auto;">
+						<img 
+							:src="pdf_source" 
+							style="width: 100%; height: auto;"
+						>
 					</div>
 
 					<div v-else class="col-md-12 p20">

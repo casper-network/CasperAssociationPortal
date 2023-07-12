@@ -123,6 +123,14 @@ export default {
 				}
 			}
 
+			else {
+				this.$root.toast(
+					'',
+					response.message,
+					'error'
+				);
+			}
+
 			if (response.status == 403) {
 				if (response.message == 'kyc-lock') {
 					this.$root.routeTo('/u/membership');

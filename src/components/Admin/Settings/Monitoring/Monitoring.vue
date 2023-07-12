@@ -112,7 +112,7 @@ export default {
 						</div>
 						<div class="form-group mt10">
 							<p class="op7 fs13">
-								Correction grace period until suspension
+								Correction grace period until revocation
 							</p>
 							<div class="form-group inline width-200 mr10">
 								<select 

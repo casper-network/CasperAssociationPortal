@@ -74,7 +74,7 @@ export default {
 			this.$root.catch401(response);
 
 			if (response.status == 200) {
-				// console.log(response.detail);
+				console.log(response.detail);
 				this.history_required = response.detail?.history_required;
 				this.eras_of_history  = response.detail?.eras_of_history;
 				this.redmarks         = response.detail?.redmarks;
@@ -130,7 +130,19 @@ export default {
 				<div class="card">
 					<div class="card-body">
 						<p>
-							Your account has been in good standing for 
+							<i
+								v-if="parseInt(this.eras_of_history) < parseInt(this.history_required)"
+								class="fa fa-times text-red"
+							></i>
+							<i
+								v-else-if="parseInt(this.eras_of_history) >= parseInt(this.history_required)"
+								class="fa fa-check text-green"
+							></i>
+							<i
+								v-else
+								class="fa fa-clock-o"
+							></i>
+							Your account has been active for 
 							<span v-if="eras_of_history === null">
 								<ClipLoader 
 									class="clip-loader-inline" 
@@ -141,7 +153,7 @@ export default {
 							<span v-else>
 								{{ eras_of_history }}
 							</span>
-							{{ plural_history1 }} out of 
+							out of the required
 							<span v-if="history_required === null">
 								<ClipLoader 
 									class="clip-loader-inline" 
@@ -152,10 +164,23 @@ export default {
 							<span v-else>
 								{{ history_required }}
 							</span>
-							required. 
+							{{ plural_history1 }}. 
 						</p>
 
 						<p>
+							<i
+								v-if="parseInt(this.eras_of_history) < parseInt(this.history_required)"
+								class="fa fa-times text-red"
+							></i>
+							<i
+								v-else-if="parseInt(this.eras_of_history) >= parseInt(this.history_required)"
+								class="fa fa-check text-green"
+							></i>
+							<i
+								v-else
+								class="fa fa-clock-o"
+							></i>
+							Detected
 							<span v-if="redmarks === null">
 								<ClipLoader 
 									class="clip-loader-inline" 
@@ -164,8 +189,20 @@ export default {
 								></ClipLoader>
 							</span>
 							<span v-else>
-								Detected {{ redmarks }} {{ plural_redmarks1 }} in the last {{ redmarks_window }} {{ plural_redmarks2 }}.
+								{{ redmarks }}
 							</span>
+							{{ plural_redmarks1 }} in the last
+							<span v-if="redmarks_window === null">
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="15px" 
+									color="#ff2d2e"
+								></ClipLoader>
+							</span>
+							<span v-else>
+								{{ redmarks_window }}
+							</span>
+							{{ plural_redmarks2 }}.
 						</p>
 
 						<p class="pt5">

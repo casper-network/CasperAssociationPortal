@@ -46,11 +46,11 @@ export default {
 			<div class="col-12 mt20">
 				<div class="card">
 					<div class="card-title">
-						Your membership is suspended
+						Your membership is revoked
 					</div>
 					<div class="card-body">
 						<p>
-							Your membership has been suspended for 
+							Your membership has been revoked for 
 							<b>{{ this.$parent.suspension_reason }}</b>.
 						</p>
 

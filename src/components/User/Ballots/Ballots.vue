@@ -74,7 +74,7 @@ export default {
 			this.$root.catch401(response);
 
 			if (response.status == 200) {
-				console.log(response.detail);
+				// console.log(response.detail);
 				this.history_required = response.detail?.history_required;
 				this.eras_of_history  = response.detail?.eras_of_history;
 				this.redmarks         = response.detail?.redmarks;

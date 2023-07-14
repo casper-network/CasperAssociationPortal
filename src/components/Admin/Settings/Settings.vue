@@ -170,8 +170,8 @@ export default {
 
 			if (response.status == 200) {
 				// console.log(response);
-				this.uptime_warning     = response.detail?.uptime_warning;
-				this.uptime_probation   = response.detail?.uptime_probation;
+				this.uptime_warning     = parseFloat(response.detail?.uptime_warning).toFixed(2);
+				this.uptime_probation   = parseFloat(response.detail?.uptime_probation).toFixed(2);
 				this.eras_required_to_vote = response.detail?.eras_required_to_vote;
 				this.eras_since_redmark = response.detail?.eras_since_redmark;
 				this.redmark_revoke     = response.detail?.redmark_revoke;

@@ -106,9 +106,8 @@ export default {
 							</p>
 							<input 
 								v-model="this.$parent.uptime_probation" 
-								type="number" 
+								type="text" 
 								class="form-control inline width-200 short-icon-end"
-								step="0.01"
 							>%
 						</div>
 						<div class="form-group mt10">

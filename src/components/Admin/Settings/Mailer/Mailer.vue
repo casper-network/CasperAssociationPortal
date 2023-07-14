@@ -171,40 +171,40 @@ export default {
 			);
 
 			if (response.status == 200) {
-				// console.log(response);
-				this.email_letter_uploaded    = response.detail.email_letter_uploaded;
-				this.email_kyc_needs_review   = response.detail.email_kyc_needs_review;
-				this.email_welcome            = response.detail.email_welcome;
-				this.email_node_verified      = response.detail.email_node_verified;
-				this.email_letter_received    = response.detail.email_letter_received;
-				this.email_letter_approved    = response.detail.email_letter_approved;
-				this.email_letter_denied      = response.detail.email_letter_denied;
-				this.email_new_perk           = response.detail.email_new_perk;
-				this.email_vote_started       = response.detail.email_vote_started;
-				this.email_vote_reminder      = response.detail.email_vote_reminder;
-				this.email_probation          = response.detail.email_probation;
-				this.email_revoked            = response.detail.email_revoked;
-				this.email_warning            = response.detail.email_warning;
+				console.log(response);
+				this.email_letter_uploaded    = response.detail?.email_letter_uploaded;
+				this.email_kyc_needs_review   = response.detail?.email_kyc_needs_review;
+				this.email_welcome            = response.detail?.email_welcome;
+				this.email_node_verified      = response.detail?.email_node_verified;
+				this.email_letter_received    = response.detail?.email_letter_received;
+				this.email_letter_approved    = response.detail?.email_letter_approved;
+				this.email_letter_denied      = response.detail?.email_letter_denied;
+				this.email_new_perk           = response.detail?.email_new_perk;
+				this.email_vote_started       = response.detail?.email_vote_started;
+				this.email_vote_reminder      = response.detail?.email_vote_reminder;
+				this.email_probation          = response.detail?.email_probation;
+				this.email_revoked            = response.detail?.email_revoked;
+				this.email_warning            = response.detail?.email_warning;
 
-				this.enabled_letter_uploaded  = Boolean(response.detail.enabled_letter_uploaded);
-				this.enabled_kyc_needs_review = Boolean(response.detail.enabled_kyc_needs_review);
-				this.enabled_welcome          = Boolean(response.detail.enabled_welcome);
-				this.enabled_node_verified    = Boolean(response.detail.enabled_node_verified);
-				this.enabled_letter_received  = Boolean(response.detail.enabled_letter_received);
-				this.enabled_letter_approved  = Boolean(response.detail.enabled_letter_approved);
-				this.enabled_letter_denied    = Boolean(response.detail.enabled_letter_denied);
-				this.enabled_new_perk         = Boolean(response.detail.enabled_new_perk);
-				this.enabled_vote_started     = Boolean(response.detail.enabled_vote_started);
-				this.enabled_vote_reminder    = Boolean(response.detail.enabled_vote_reminder);
-				this.enabled_probation        = Boolean(response.detail.enabled_probation);
-				this.enabled_revoked          = Boolean(response.detail.enabled_revoked);
-				this.enabled_warning          = Boolean(response.detail.enabled_warning);
+				this.enabled_letter_uploaded  = Boolean(response.detail?.enabled_letter_uploaded);
+				this.enabled_kyc_needs_review = Boolean(response.detail?.enabled_kyc_needs_review);
+				this.enabled_welcome          = Boolean(response.detail?.enabled_welcome);
+				this.enabled_node_verified    = Boolean(response.detail?.enabled_node_verified);
+				this.enabled_letter_received  = Boolean(response.detail?.enabled_letter_received);
+				this.enabled_letter_approved  = Boolean(response.detail?.enabled_letter_approved);
+				this.enabled_letter_denied    = Boolean(response.detail?.enabled_letter_denied);
+				this.enabled_new_perk         = Boolean(response.detail?.enabled_new_perk);
+				this.enabled_vote_started     = Boolean(response.detail?.enabled_vote_started);
+				this.enabled_vote_reminder    = Boolean(response.detail?.enabled_vote_reminder);
+				this.enabled_probation        = Boolean(response.detail?.enabled_probation);
+				this.enabled_revoked          = Boolean(response.detail?.enabled_revoked);
+				this.enabled_warning          = Boolean(response.detail?.enabled_warning);
 
-				this.reinstatement_contact    = response.detail.reinstatement_contact ?? '';
+				this.reinstatement_contact    = response.detail?.reinstatement_contact ?? '';
 
 				let that = this;
 				setTimeout(function() {
-					that.lock_ready  = true;
+					that.lock_ready = true;
 				},1000);
 			}
 		},

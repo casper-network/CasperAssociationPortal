@@ -36,10 +36,13 @@ export default {
 
 			flipVoteModalIsOpen: false,
 			isClickOut: false,
+
+			can_vote: null
 		}
 	},
 
 	created() {
+		this.getVoteEligibility();
 		this.getBallot();
 	},
 
@@ -62,6 +65,24 @@ export default {
 	},
 
 	methods: {
+		async getVoteEligibility() {
+			let fetch_bearer_token = this.$cookies.get('bearer_token');
+
+			const response = await api(
+				'GET',
+				'user/get-vote-eligibility',
+				{},
+				fetch_bearer_token
+			);
+
+			this.$root.catch401(response);
+
+			if (response.status == 200) {
+				// console.log(response.detail);
+				this.can_vote = response.detail?.can_vote;
+			}
+		},
+
 		async getBallot() {
 			let fetch_bearer_token = this.$cookies.get('bearer_token');
 
@@ -270,6 +291,14 @@ export default {
 					'success'
 				);
 			}
+
+			else {
+				this.$root.toast(
+					'',
+					response.message,
+					'error'
+				);
+			}
 		},
 
 		async voteAgainst() {
@@ -291,6 +320,14 @@ export default {
 					'', 
 					response.message, 
 					'success'
+				);
+			}
+
+			else {
+				this.$root.toast(
+					'',
+					response.message,
+					'error'
 				);
 			}
 		}
@@ -531,6 +568,7 @@ export default {
 
 									<button 
 										class="btn btn-sm btn-success fs12 mt5" 
+										:class="can_vote ? '' : 'div-disabled'"
 										@click="flipVote()"
 									>
 										Flip My Vote
@@ -542,12 +580,14 @@ export default {
 										<div class="form-group mt20">
 											<button 
 												class="btn btn-success width-150 mr5" 
+												:class="can_vote ? '' : 'div-disabled'"
 												@click="voteFor()"
 											>
 												Vote For
 											</button>
 											<button 
 												class="btn btn-black width-150" 
+												:class="can_vote ? '' : 'div-disabled'"
 												@click="voteAgainst()"
 											>
 												Vote Against
@@ -594,12 +634,14 @@ export default {
 
 			<button 
 				class="btn btn-success btn-sm mt15" 
+				:class="can_vote ? '' : 'div-disabled'"
 				@click="_flipVote()"
 			>
 				Flip My Vote
 			</button>
 			<button 
 				class="btn btn-black btn-sm mt15 ml5" 
+				:class="can_vote ? '' : 'div-disabled'"
 				@click="cancelflipVote"
 			>
 				Cancel

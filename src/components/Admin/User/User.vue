@@ -264,6 +264,10 @@ export default {
 				this.eras_active        = response.detail.total_eras;
 				this.total_redmarks     = response.detail.total_redmarks;
 				this.eras_since_redmark = response.detail.eras_since_redmark;
+
+				if (this.node_status == 'Suspended') {
+					this.node_status = 'Revoked';
+				}
 			} else {
 				this.node_status        = 'Offline';
 				this.validator_fee      = 0;
@@ -433,10 +437,16 @@ export default {
 </script>
 
 <template>
-	<div class="container-fluid" style="z-index: 0;">
+	<div 
+		class="container-fluid" 
+		style="z-index: 0;"
+	>
 		<div class="row">
 			<div class="col-12 mt20">
-				<div class="go-back" @click="this.$router.back()">
+				<div 
+					class="go-back" 
+					@click="this.$router.back()"
+				>
 					<i class="fa fa-arrow-left"></i>
 					Back
 				</div>
@@ -444,7 +454,11 @@ export default {
 					<div class="card-title mb0">
 						User details - 
 						<span v-if="email === null">
-							<ClipLoader class="clip-loader-inline" size="20px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								class="clip-loader-inline" 
+								size="20px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</span>
 						<span v-else>
 							{{ this.$root.formatString(email, 25) }}
@@ -460,20 +474,64 @@ export default {
 						</p>
 
 						<div v-if="block_nodes === null">
-							<ClipLoader class="clip-loader-inline" size="20px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								class="clip-loader-inline" 
+								size="20px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
 						<div v-else>
-							<input type="checkbox" id="block-nodes" class="form-check-input pointer mt5" v-model="block_nodes">
-							<label class="fs14 pointer" for="block-nodes">&ensp;Nodes&emsp;&ensp;</label>
+							<input 
+								type="checkbox" 
+								id="block-nodes" 
+								class="form-check-input pointer mt5" 
+								v-model="block_nodes"
+							>
+							<label 
+								class="fs14 pointer" 
+								for="block-nodes"
+							>
+								&ensp;Nodes&emsp;&ensp;
+							</label>
 
-							<input type="checkbox" id="block-discussions" class="form-check-input pointer mt5" v-model="block_discussions">
-							<label class="fs14 pointer" for="block-discussions">&ensp;Discussions&emsp;&ensp;</label>
+							<input 
+								type="checkbox" 
+								id="block-discussions" 
+								class="form-check-input pointer mt5" 
+								v-model="block_discussions"
+							>
+							<label 
+								class="fs14 pointer" 
+								for="block-discussions"
+							>
+								&ensp;Discussions&emsp;&ensp;
+							</label>
 
-							<input type="checkbox" id="block-votes" class="form-check-input pointer mt5" v-model="block_votes">
-							<label class="fs14 pointer" for="block-votes">&ensp;Votes&emsp;&ensp;</label>
+							<input 
+								type="checkbox" 
+								id="block-votes" 
+								class="form-check-input pointer mt5" 
+								v-model="block_votes"
+							>
+							<label 
+								class="fs14 pointer" 
+								for="block-votes"
+							>
+								&ensp;Votes&emsp;&ensp;
+							</label>
 
-							<input type="checkbox" id="block-perks" class="form-check-input pointer mt5" v-model="block_perks">
-							<label class="fs14 pointer" for="block-perks">&ensp;Perks&emsp;&ensp;</label>
+							<input 
+								type="checkbox" 
+								id="block-perks" 
+								class="form-check-input pointer mt5" 
+								v-model="block_perks"
+							>
+							<label 
+								class="fs14 pointer" 
+								for="block-perks"
+							>
+								&ensp;Perks&emsp;&ensp;
+							</label>
 						</div>
 
 						<hr>
@@ -481,7 +539,11 @@ export default {
 						<p class="bold mt20 fs16">
 							Membership Status:&ensp;
 							<span v-if="membership_status === null">
-								<ClipLoader class="clip-loader-inline" size="20px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="20px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
 							<span v-else>
 								{{ this.$root.ucfirst(membership_status) }}
@@ -491,7 +553,11 @@ export default {
 						<p class="bold fs16">
 							Node Status:&ensp;
 							<span v-if="node_status === null">
-								<ClipLoader class="clip-loader-inline" size="20px" color="#ff2d2e"></ClipLoader>
+								<ClipLoader 
+									class="clip-loader-inline" 
+									size="20px" 
+									color="#ff2d2e"
+								></ClipLoader>
 							</span>
 							<span v-else>
 								{{ this.$root.ucfirst(node_status) }}
@@ -511,7 +577,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="email === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ email }}
@@ -524,10 +594,17 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="user_guid === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
-										<span class="bold underline pointer" @click="this.$root.routeTo(`/a/profile/${user_guid}`)">
+										<span 
+											class="bold underline pointer" 
+											@click="this.$root.routeTo(`/a/profile/${user_guid}`)"
+										>
 											{{ user_guid }}
 										</span>
 									</div>
@@ -539,7 +616,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="account_type === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ this.$root.ucfirst(account_type) }}
@@ -552,7 +633,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="first_name === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ first_name }}
@@ -565,7 +650,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="last_name === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ last_name }}
@@ -578,7 +667,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="pseudonym === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ pseudonym }}
@@ -591,7 +684,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="telegram === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ telegram }}
@@ -604,10 +701,17 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="letter === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
-										<a :href="letter" target="_blank">
+										<a 
+											:href="letter" 
+											target="_blank"
+										>
 											{{ letter }}
 										</a>
 									</div>
@@ -622,13 +726,30 @@ export default {
 						</p>
 
 						<div v-if="selected_validator === null">
-							<ClipLoader class="clip-loader-inline" size="25px" color="#ff2d2e"></ClipLoader>
+							<ClipLoader 
+								class="clip-loader-inline" 
+								size="25px" 
+								color="#ff2d2e"
+							></ClipLoader>
 						</div>
 						<div v-else>
-							<select class="form-select select-with-copy inline" ref="selected_validator" v-model="selected_validator">
-								<option v-for="(public_key, index) in this.nodes" :value="public_key" :selected="index == 0">{{ public_key }}</option>
+							<select 
+								class="form-select select-with-copy inline" 
+								ref="selected_validator" 
+								v-model="selected_validator"
+							>
+								<option 
+									v-for="(public_key, index) in this.nodes" 
+									:value="public_key" 
+									:selected="index == 0"
+								>
+									{{ public_key }}
+								</option>
 							</select>
-							<i class="fa fa-clipboard fs16 pointer inline ml10" @click="copyValidatorId"></i>
+							<i 
+								class="fa fa-clipboard fs16 pointer inline ml10" 
+								@click="copyValidatorId"
+							></i>
 						</div>
 
 						<table class="table profile-table mt20">
@@ -638,11 +759,18 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="total_stake === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ total_stake.toLocaleString('en-US') }}
-										<img src="@/assets/images/favicon.png" class="tiny-img">
+										<img 
+											src="@/assets/images/favicon.png" 
+											class="tiny-img"
+										>
 									</div>
 								</td>
 							</tr>
@@ -652,7 +780,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="uptime === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ uptime }}%
@@ -665,7 +797,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="eras_active === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ eras_active }}
@@ -678,7 +814,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="eras_since_redmark === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ eras_since_redmark }}
@@ -691,7 +831,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="total_redmarks === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ total_redmarks }}
@@ -713,7 +857,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="kyc_status === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										<span 
@@ -754,7 +902,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="dob === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ dob ? dob : 'Unknown' }}
@@ -767,7 +919,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="country_citizenship === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ country_citizenship ? country_citizenship : 'Unknown' }}
@@ -785,10 +941,19 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="cmp_checked === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
-										<input type="checkbox" v-model="cmp_checked" class="form-check-input pointer" @click="flipCmpCheck">
+										<input 
+											type="checkbox" 
+											v-model="cmp_checked" 
+											class="form-check-input pointer" 
+											@click="flipCmpCheck"
+										>
 									</div>
 								</td>
 							</tr>
@@ -798,11 +963,18 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="reference_id === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ reference_id }}&ensp;
-										<i class="fa fa-clipboard fs16 pointer" @click="copyReferenceId"></i>
+										<i 
+											class="fa fa-clipboard fs16 pointer" 
+											@click="copyReferenceId"
+										></i>
 									</div>
 								</td>
 							</tr>
@@ -812,7 +984,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="id_check === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ id_check }}
@@ -825,7 +1001,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="address_check === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ address_check }}
@@ -838,7 +1018,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="background_check === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ background_check }}
@@ -854,7 +1038,11 @@ export default {
 								</td>
 								<td class="td-right">
 									<div v-if="reviewed_by === null">
-										<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+										<ClipLoader 
+											class="clip-loader-inline" 
+											size="15px" 
+											color="#ff2d2e"
+										></ClipLoader>
 									</div>
 									<div v-else>
 										{{ reviewed_by }}<br/>
@@ -878,7 +1066,11 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="entity_name === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
 											{{ entity_name ? entity_name : 'Unknown' }}
@@ -891,7 +1083,11 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="entity_type === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
 											{{ entity_type ? entity_type : 'Unknown' }}
@@ -904,7 +1100,11 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="entity_reg_number === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
 											{{ entity_reg_number ? entity_reg_number : 'Unknown' }}
@@ -917,7 +1117,11 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="entity_country === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
 											{{ entity_country ? entity_country : 'Unknown' }}
@@ -930,7 +1134,11 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="entity_tax_id === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
 											{{ entity_tax_id ? entity_tax_id : 'Unknown' }}
@@ -943,10 +1151,17 @@ export default {
 									</td>
 									<td class="td-right">
 										<div v-if="document_url === null">
-											<ClipLoader class="clip-loader-inline" size="15px" color="#ff2d2e"></ClipLoader>
+											<ClipLoader 
+												class="clip-loader-inline" 
+												size="15px" 
+												color="#ff2d2e"
+											></ClipLoader>
 										</div>
 										<div v-else>
-											<a :href="document_url" target="_blank">
+											<a 
+												:href="document_url" 
+												target="_blank"
+											>
 												{{ document_url }}
 											</a>
 											<span v-if="document_page">
@@ -963,7 +1178,10 @@ export default {
 						</p>
 
 						<div v-if="kyc_status == 'approved'">
-							<button class="btn btn-success btn-sm mt10 mr10" @click="manuallyUpdateUserKyc('reset')">
+							<button 
+								class="btn btn-success btn-sm mt10 mr10" 
+								@click="manuallyUpdateUserKyc('reset')"
+							>
 								Reset KYC
 							</button>
 						</div>
@@ -990,11 +1208,17 @@ export default {
 								kyc_status != 'denied'
 							"
 						>
-							<button class="btn btn-success btn-sm mt10 mr10" @click="manuallyUpdateUserKyc('approved')">
+							<button 
+								class="btn btn-success btn-sm mt10 mr10" 
+								@click="manuallyUpdateUserKyc('approved')"
+							>
 								Manually Approve
 							</button>
 
-							<button class="btn btn-success btn-sm mt10 mr10" @click="manuallyUpdateUserKyc('reset')">
+							<button 
+								class="btn btn-success btn-sm mt10 mr10" 
+								@click="manuallyUpdateUserKyc('reset')"
+							>
 								Reset KYC
 							</button>
 						</div>
@@ -1018,12 +1242,18 @@ export default {
 				Are you sure you want to uncheck this user's CMP validation?
 			</p>
 
-			<button class="btn btn-success form-control btn-inline ml0 mt20 mb10" @click="this.cmp_checked = false; _flipCmpCheck()">
+			<button 
+				class="btn btn-success form-control btn-inline ml0 mt20 mb10" 
+				@click="this.cmp_checked = false; _flipCmpCheck()"
+			>
 				<i class="fa fa-check bold"></i>
 				Yes
 			</button>
 
-			<button class="btn btn-success form-control btn-inline mt20 mb10" @click="flip_cmp_modal = false">
+			<button 
+				class="btn btn-success form-control btn-inline mt20 mb10" 
+				@click="flip_cmp_modal = false"
+			>
 				Cancel
 			</button>
 		</div>
@@ -1048,15 +1278,24 @@ export default {
 					Add a reason:
 				</p>
 
-				<textarea class="form-control" v-model="declined_reason"></textarea>
+				<textarea 
+					class="form-control" 
+					v-model="declined_reason"
+				></textarea>
 			</div>
 
-			<button class="btn btn-success form-control btn-inline ml0 mt20 mb10" @click="_manuallyUpdateUserKyc()">
+			<button 
+				class="btn btn-success form-control btn-inline ml0 mt20 mb10" 
+				@click="_manuallyUpdateUserKyc()"
+			>
 				<i class="fa fa-check bold"></i>
 				Proceed
 			</button>
 
-			<button class="btn btn-success form-control btn-inline mt20 mb10" @click="manual_kyc_modal = false; review_modal = true;">
+			<button 
+				class="btn btn-success form-control btn-inline mt20 mb10" 
+				@click="manual_kyc_modal = false; review_modal = true;"
+			>
 				Cancel
 			</button>
 		</div>
@@ -1080,7 +1319,10 @@ export default {
 			</p>
 
 			<p class="mt20">
-				<a :href="document_url" target="_blank">
+				<a 
+					:href="document_url" 
+					target="_blank"
+				>
 					<u>document1</u>
 				</a>
 			</p>
@@ -1115,7 +1357,10 @@ export default {
 
 			<br/>
 
-			<p class="pointer underline text-red ml0 mt20" @click="review_modal = false">
+			<p 
+				class="pointer underline text-red ml0 mt20" 
+				@click="review_modal = false"
+			>
 				Cancel
 			</p>
 		</div>
@@ -1143,16 +1388,25 @@ export default {
 					{{ reference_id }}
 				</span>
 				&ensp;
-				<i class="fa fa-clipboard fs16 pointer" @click="copyReferenceId"></i>
+				<i 
+					class="fa fa-clipboard fs16 pointer" 
+					@click="copyReferenceId"
+				></i>
 			</p>
 
-			<button class="btn btn-success form-control width-200 ml0 mt20" @click="gotoBackoffice">
+			<button 
+				class="btn btn-success form-control width-200 ml0 mt20" 
+				@click="gotoBackoffice"
+			>
 				Go to Backoffice
 			</button>
 
 			<br/>
 
-			<p class="pointer underline text-red ml0 mt30" @click="backoffice_modal = false; review_modal = true">
+			<p 
+				class="pointer underline text-red ml0 mt30" 
+				@click="backoffice_modal = false; review_modal = true"
+			>
 				Back
 			</p>
 		</div>
@@ -1177,16 +1431,25 @@ export default {
 					{{ reference_id }}
 				</span>
 				&ensp;
-				<i class="fa fa-clipboard fs16 pointer" @click="copyReferenceId"></i>
+				<i 
+					class="fa fa-clipboard fs16 pointer" 
+					@click="copyReferenceId"
+				></i>
 			</p>
 
-			<button class="btn btn-success form-control width-200 ml0 mt20" @click="gotoBackoffice">
+			<button 
+				class="btn btn-success form-control width-200 ml0 mt20" 
+				@click="gotoBackoffice"
+			>
 				Go to Backoffice
 			</button>
 
 			<br/>
 
-			<p class="pointer underline text-red ml0 mt20" @click="review_modal_i = false">
+			<p 
+				class="pointer underline text-red ml0 mt20" 
+				@click="review_modal_i = false"
+			>
 				Cancel
 			</p>
 		</div>

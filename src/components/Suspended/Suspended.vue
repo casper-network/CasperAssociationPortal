@@ -55,7 +55,7 @@ export default {
 						</p>
 
 						<p class="mt20">
-							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>360</b> eras and you have no more than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
+							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>360</b> eras and you have less than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
 						</p>
 
 						<ClipLoader 

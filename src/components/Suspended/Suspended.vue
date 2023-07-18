@@ -97,7 +97,10 @@ export default {
 									<td class="bold">
 										Uptime:
 									</td>
-									<td v-if="this.$parent.stats_uptime < this.$parent.settings.uptime_probation" class="text-red">
+									<td 
+										v-if="this.$parent.stats_uptime < this.$parent.settings.uptime_probation" 
+										class="text-red"
+									>
 										{{ this.$parent.stats_uptime }}%
 									</td>
 									<td v-else class="text-green">
@@ -111,7 +114,10 @@ export default {
 									<td class="bold">
 										Redmarks:
 									</td>
-									<td v-if="this.$parent.stats_redmarks > this.$parent.settings.redmark_revoke" class="text-red">
+									<td 
+										v-if="this.$parent.stats_redmarks >= this.$parent.settings.redmark_revoke" 
+										class="text-red"
+									>
 										{{ this.$parent.stats_redmarks }}
 									</td>
 									<td v-else class="text-green">
@@ -153,7 +159,11 @@ export default {
 									Please share the reason you believe that reactivation should be granted in the box below.
 								</p>
 
-								<textarea class="form-control height-200" placeholder="Limit 500 words" ref="reactivation_letter"></textarea>
+								<textarea 
+									class="form-control height-200" 
+									placeholder="Limit 500 words" 
+									ref="reactivation_letter"
+								></textarea>
 
 								<ClipLoader 
 									v-if="this.$parent.sus_loading" 
@@ -162,7 +172,11 @@ export default {
 									color="#ff2d2e"
 								></ClipLoader>
 
-								<button v-else class="btn btn-success mt10" @click="requestReactivation">
+								<button 
+									v-else 
+									class="btn btn-success mt10" 
+									@click="requestReactivation"
+								>
 									Request Reactivation
 								</button>
 							</div>

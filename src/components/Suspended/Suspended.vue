@@ -99,11 +99,11 @@ export default {
 									</td>
 									<td 
 										v-if="this.$parent.stats_uptime < this.$parent.settings.uptime_probation" 
-										class="text-red"
+										class="text-red bold"
 									>
 										{{ this.$parent.stats_uptime }}%
 									</td>
-									<td v-else class="text-green">
+									<td v-else class="text-green bold">
 										{{ this.$parent.stats_uptime }}%
 									</td>
 									<td>
@@ -116,11 +116,11 @@ export default {
 									</td>
 									<td 
 										v-if="this.$parent.stats_redmarks >= this.$parent.settings.redmark_revoke" 
-										class="text-red"
+										class="text-red bold"
 									>
 										{{ this.$parent.stats_redmarks }}
 									</td>
-									<td v-else class="text-green">
+									<td v-else class="text-green bold">
 										{{ this.$parent.stats_redmarks }}
 									</td>
 									<td>

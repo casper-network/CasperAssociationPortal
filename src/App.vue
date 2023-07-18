@@ -693,6 +693,8 @@ export default {
 			this.catch401(response);
 
 			if (response.status == 200) {
+				console.log(response.detail);
+				console.log(this.settings);
 				this.getMe();
 				this.sus_loading    = false;
 				this.stats_uptime   = parseFloat(response.detail?.uptime);

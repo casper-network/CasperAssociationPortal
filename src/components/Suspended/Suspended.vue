@@ -124,7 +124,13 @@ export default {
 										{{ this.$parent.stats_redmarks }}
 									</td>
 									<td>
-										<span class="op7 fs13"> (maximum: {{ this.$parent.settings.redmark_revoke }})</span>
+										<span class="op7 fs13">
+											(maximum: {{
+												this.$parent.settings.redmark_revoke - 1 > 0 ?
+												this.$parent.settings.redmark_revoke - 1 :
+												0
+											}})
+										</span>
 									</td>
 								</tr>
 							</table>

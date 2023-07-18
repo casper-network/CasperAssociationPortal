@@ -700,26 +700,41 @@ export default {
 				this.stats_uptime   = parseFloat(response.detail?.uptime);
 				this.stats_redmarks = parseInt(response.detail?.redmarks);
 
-				if (this.stats_uptime < this.settings?.uptime_probation) {
+				if (this.stats_uptime < this.settings.uptime_probation) {
 					this.sus_stat = 'Your uptime is still too low to be re-instated';
+
+					this.toast(
+						'',
+						this.sus_stat,
+						'info'
+					);
+					return;
 				}
 
-				if (this.stats_redmarks > this.settings?.redmark_revoke) {
+				if (this.stats_redmarks >= this.settings.redmark_revoke) {
 					this.sus_stat = 'Your node has too many redmarks to be re-instated';
+
+					this.toast(
+						'',
+						this.sus_stat,
+						'info'
+					);
+					return;
 				}
 
 				if (
-					this.stats_uptime   >= this.settings?.uptime_probation &&
-					this.stats_redmarks <  this.settings?.redmark_revoke
+					this.stats_uptime   >= this.settings.uptime_probation &&
+					this.stats_redmarks <  this.settings.redmark_revoke
 				) {
 					this.sus_stat = 'You can request reactivation!';
-				}
 
-				this.toast(
-					'',
-					this.sus_stat,
-					'info'
-				);
+					this.toast(
+						'',
+						this.sus_stat,
+						'success'
+					);
+					return;
+				}
 			} else {
 				this.toast(
 					'',

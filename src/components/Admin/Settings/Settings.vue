@@ -169,7 +169,7 @@ export default {
 			this.$root.catch401(response);
 
 			if (response.status == 200) {
-				// console.log(response);
+				console.log(response);
 				this.uptime_warning     = parseFloat(response.detail?.uptime_warning).toFixed(3);
 				this.uptime_probation   = parseFloat(response.detail?.uptime_probation).toFixed(3);
 				this.eras_required_to_vote = response.detail?.eras_required_to_vote;

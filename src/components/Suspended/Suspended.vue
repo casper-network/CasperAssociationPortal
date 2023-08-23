@@ -55,7 +55,7 @@ export default {
 						</p>
 
 						<p class="mt20">
-							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>360</b> eras and you have no more than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
+							You may be eligible to reactivate your membership if your uptime rises above <b>{{ this.$parent.settings.uptime_probation }}%</b> over the last <b>360</b> eras and you have less than <b>{{ this.$parent.settings.redmark_revoke }}</b> redmarks in the last <b>{{ this.$parent.settings.redmark_calc_size }}</b> eras.
 						</p>
 
 						<ClipLoader 
@@ -97,10 +97,13 @@ export default {
 									<td class="bold">
 										Uptime:
 									</td>
-									<td v-if="this.$parent.stats_uptime < this.$parent.settings.uptime_probation" class="text-red">
+									<td 
+										v-if="this.$parent.stats_uptime < this.$parent.settings.uptime_probation" 
+										class="text-red bold"
+									>
 										{{ this.$parent.stats_uptime }}%
 									</td>
-									<td v-else class="text-green">
+									<td v-else class="text-green bold">
 										{{ this.$parent.stats_uptime }}%
 									</td>
 									<td>
@@ -111,14 +114,23 @@ export default {
 									<td class="bold">
 										Redmarks:
 									</td>
-									<td v-if="this.$parent.stats_redmarks > this.$parent.settings.redmark_revoke" class="text-red">
+									<td 
+										v-if="this.$parent.stats_redmarks >= this.$parent.settings.redmark_revoke" 
+										class="text-red bold"
+									>
 										{{ this.$parent.stats_redmarks }}
 									</td>
-									<td v-else class="text-green">
+									<td v-else class="text-green bold">
 										{{ this.$parent.stats_redmarks }}
 									</td>
 									<td>
-										<span class="op7 fs13"> (maximum: {{ this.$parent.settings.redmark_revoke }})</span>
+										<span class="op7 fs13">
+											(maximum: {{
+												this.$parent.settings.redmark_revoke - 1 > 0 ?
+												this.$parent.settings.redmark_revoke - 1 :
+												0
+											}})
+										</span>
 									</td>
 								</tr>
 							</table>
@@ -153,7 +165,11 @@ export default {
 									Please share the reason you believe that reactivation should be granted in the box below.
 								</p>
 
-								<textarea class="form-control height-200" placeholder="Limit 500 words" ref="reactivation_letter"></textarea>
+								<textarea 
+									class="form-control height-200" 
+									placeholder="Limit 500 words" 
+									ref="reactivation_letter"
+								></textarea>
 
 								<ClipLoader 
 									v-if="this.$parent.sus_loading" 
@@ -162,7 +178,11 @@ export default {
 									color="#ff2d2e"
 								></ClipLoader>
 
-								<button v-else class="btn btn-success mt10" @click="requestReactivation">
+								<button 
+									v-else 
+									class="btn btn-success mt10" 
+									@click="requestReactivation"
+								>
 									Request Reactivation
 								</button>
 							</div>

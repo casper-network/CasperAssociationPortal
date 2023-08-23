@@ -3,4 +3,4 @@
 
 # Reviewer for CICD related changes
 .github @bradjohnl
-ansible @bradjohnl
+docker @bradjohnl

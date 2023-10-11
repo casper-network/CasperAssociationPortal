@@ -52,7 +52,7 @@ export default {
 			password2: '',
 			password_hidden: true,
 			password2_hidden: true,
-			min8chars: false,
+			min10chars: false,
 			onenumber: false,
 			specialchar: false
 		}
@@ -97,10 +97,10 @@ export default {
 		},
 
 		checkPassword() {
-			if (this.password.length >= 8) {
-				this.min8chars = true;
+			if (this.password.length >= 10) {
+				this.min10chars = true;
 			} else {
-				this.min8chars = false;
+				this.min10chars = false;
 			}
 
 			let number_pattern = /([0-9])+/g;
@@ -187,7 +187,7 @@ export default {
 			}
 
 			if (
-				!this.min8chars ||
+				!this.min10chars ||
 				!this.onenumber ||
 				!this.specialchar
 			) {
@@ -347,10 +347,10 @@ export default {
 
 							<div class="row">
 								<div class="col-sm-12">
-									<p class="pt15 check-circle" :class="{ 'check-circle-active': min8chars }">
-										<img v-if="min8chars == true" src="@/assets/images/check-circle-green.svg">
+									<p class="pt15 check-circle" :class="{ 'check-circle-active': min10chars }">
+										<img v-if="min10chars == true" src="@/assets/images/check-circle-green.svg">
 										<img v-else src="@/assets/images/check-circle.svg">
-										Min 8 characters
+										Min 10 characters
 									</p>
 									<p class="check-circle" :class="{ 'check-circle-active': onenumber }">
 										<img v-if="onenumber == true" src="@/assets/images/check-circle-green.svg">
@@ -544,10 +544,10 @@ export default {
 
 							<div class="row">
 								<div class="col-sm-12">
-									<p class="pt15 check-circle" :class="{ 'check-circle-active': min8chars }">
-										<img v-if="min8chars == true" src="@/assets/images/check-circle-green.svg">
+									<p class="pt15 check-circle" :class="{ 'check-circle-active': min10chars }">
+										<img v-if="min10chars == true" src="@/assets/images/check-circle-green.svg">
 										<img v-else src="@/assets/images/check-circle.svg">
-										Min 8 characters
+										Min 10 characters
 									</p>
 									<p class="check-circle" :class="{ 'check-circle-active': onenumber }">
 										<img v-if="onenumber == true" src="@/assets/images/check-circle-green.svg">

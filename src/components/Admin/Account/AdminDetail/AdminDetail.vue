@@ -22,7 +22,7 @@ export default {
 			old_pw:      '',
 			new_pw:      '',
 			new_pw2:     '',
-			min8chars:   false,
+			min10chars:  false,
 			onenumber:   false,
 			specialchar: false,
 
@@ -292,7 +292,7 @@ export default {
 
 				this.checkNewPassword();
 
-				if (!this.min8chars || !this.onenumber || !this.specialchar) {
+				if (!this.min10chars || !this.onenumber || !this.specialchar) {
 					this.$root.toast('Password', 'New password does not meet complexity requirements', 'warning');
 					return;
 				}
@@ -361,10 +361,10 @@ export default {
 		},
 
 		checkNewPassword() {
-			if (this.new_pw.length >= 8) {
-				this.min8chars = true;
+			if (this.new_pw.length >= 10) {
+				this.min10chars = true;
 			} else {
-				this.min8chars = false;
+				this.min10chars = false;
 			}
 
 			let number_pattern = /([0-9])+/g;
@@ -848,7 +848,7 @@ export default {
 
 				<p class="pt15 check-circle check-circle-active">
 					<img src="@/assets/images/check-circle-green.svg">
-					Min 8 characters
+					Min 10 characters
 				</p>
 				<p class="check-circle check-circle-active">
 					<img src="@/assets/images/check-circle-green.svg">
